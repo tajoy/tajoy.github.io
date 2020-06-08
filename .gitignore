@@ -70,3 +70,9 @@ yarn-error.log
 
 
 test.js
+
+
+# private encrypt file
+deploy_rsa
+deploy_rsa.pub
+

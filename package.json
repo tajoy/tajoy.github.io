@@ -113,7 +113,7 @@
     "url": "git+https://github.com/tajoy/tajoy.github.io.git"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "tree src && gatsby build",
     "develop": "gatsby clean && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
