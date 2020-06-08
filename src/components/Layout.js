@@ -14,7 +14,7 @@ import { rhythm, scale } from "../utils/typography"
 
 import Header from "./layout/Header"
 import Footer from "./layout/Footer"
-import Sidebar from "./layout/Sidebar"
+import Sidebar from "./layout/SideBar"
 import TOC from "./layout/TOC"
 import GoTop from "./layout/GoTop"
 
