@@ -70,7 +70,7 @@ const License = ({ context }) => {
         <tbody>
           <tr>
             <td align="right">本文作者：</td>
-            <td>{site.author.name}</td>
+            <td>{site.siteMetadata.author.name}</td>
           </tr>
           <tr>
             <td align="right">本文链接：</td>

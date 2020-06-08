@@ -3,7 +3,12 @@ import Article from "../components/Article"
 import { graphql } from "gatsby"
 
 const ArticleTemplate = ({ location, pageContext, data }) => {
-  return <Article article={data.markdownRemark} context={pageContext} />
+  return (
+    <Article
+      article={data.markdownRemark}
+      context={{ ...pageContext, ...data, location }}
+    />
+  )
 }
 
 export default ArticleTemplate
