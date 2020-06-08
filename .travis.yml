@@ -12,6 +12,7 @@ addons:
   apt:
     update: true
 install:
+- sudo apt install tree
 - yarn
 script:
 - npm run build
