@@ -1,0 +1,8 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    // "semi": "off",
+    // "quotes": "off",
+    "no-unused-vars": "off"
+  }
+}
