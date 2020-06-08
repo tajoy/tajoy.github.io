@@ -1,0 +1,50 @@
+#!/bin/bash
+REPO_PATH=`pwd`;
+
+echo "REPO_PATH=$REPO_PATH"
+echo "HOME=$HOME"
+unset GIT_DIR;
+
+if [ ! -d $HOME/www-src ]; then
+    echo "创建网站源码目录..."
+    mkdir -p $HOME/www-src;
+    cd $HOME/www-src;
+    git clone -b src $REPO_PATH $HOME/www-src;
+    git remote add -t src origin-github https://github.com/tajoy/tajoy.github.io.git
+fi;
+
+if [ ! -d $HOME/www ]; then
+    echo "创建网站目录..."
+    mkdir -p $HOME/www;
+    cd $HOME/www;
+    git clone -b master $REPO_PATH $HOME/www;
+    git remote add -t master origin-github https://github.com/tajoy/tajoy.github.io.git
+fi;
+
+echo "更新源码..."
+cd $HOME/www-src;
+git checkout src
+git pull origin
+
+
+echo "生成网站..."
+hugo -s $HOME/www-src
+cp -rf $HOME/www-src/public/* $HOME/www/
+
+echo "提交生成的代码"
+cd $HOME/www;
+git commit -am "`date +%Y-%m-%d.%H:%M:%S` 自动生成."
+
+echo "同步推送生成的网站..."
+
+echo "推送至本地repo..."
+cd $HOME/www-src;
+git push origin
+cd $HOME/www;
+git push origin
+
+echo "推送至github..."
+cd $HOME/www-src;
+git push origin-github
+cd $HOME/www;
+git push origin-github
