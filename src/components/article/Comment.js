@@ -21,6 +21,9 @@ class Comment extends React.Component {
       this.gitalk.render("gitalk-container")
       return
     }
+    const { article } = this.props
+    const { fields = {} } = article
+    const { id = location.pathname } = fields
 
     Promise.all([
       window.loadExternalResource(
@@ -46,7 +49,7 @@ class Comment extends React.Component {
           repo: "tajoy.github.io",
           owner: "tajoy",
           admin: ["tajoy"],
-          id: location.pathname, // Ensure uniqueness and length less than 50
+          id: id.substr(0, 50), // Ensure uniqueness and length less than 50
           distractionFreeMode: false, // Facebook-like distraction free mode
         })
       }
