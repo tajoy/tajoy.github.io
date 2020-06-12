@@ -22,8 +22,7 @@ class Comment extends React.Component {
       return
     }
     const { article } = this.props
-    const { fields = {} } = article
-    const { id = location.pathname } = fields
+    const { id = location.pathname } = article
     const $container = $("#gitalk-container")
     if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
       $container.html(
