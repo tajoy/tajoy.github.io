@@ -24,37 +24,25 @@ class Comment extends React.Component {
     const { article } = this.props
     const { fields = {} } = article
     const { id = location.pathname } = fields
-
-    Promise.all([
-      window.loadExternalResource(
-        "https://unpkg.com/gitalk/dist/gitalk.min.js",
-        "js"
-      ),
-      window.loadExternalResource(
-        "https://unpkg.com/gitalk/dist/gitalk.css",
-        "css"
-      ),
-    ]).then(() => {
-      const $container = $("#gitalk-container")
-      if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-        $container.html(
-          "Gitalk comments not available by default when the website is previewed locally."
-        )
-        return
-      }
-      if (!this.gitalk) {
-        this.gitalk = new Gitalk({
-          clientID: "8b460a9d68322500a100",
-          clientSecret: "926c457c4295803c58f53b7c20ec366c8792a996",
-          repo: "tajoy.github.io",
-          owner: "tajoy",
-          admin: ["tajoy"],
-          id: id.substr(0, 50), // Ensure uniqueness and length less than 50
-          distractionFreeMode: false, // Facebook-like distraction free mode
-        })
-      }
-      this.gitalk.render("gitalk-container")
-    })
+    const $container = $("#gitalk-container")
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      $container.html(
+        "Gitalk comments not available by default when the website is previewed locally."
+      )
+      return
+    }
+    if (!this.gitalk) {
+      this.gitalk = new Gitalk({
+        clientID: "8b460a9d68322500a100",
+        clientSecret: "926c457c4295803c58f53b7c20ec366c8792a996",
+        repo: "tajoy.github.io",
+        owner: "tajoy",
+        admin: ["tajoy"],
+        id: id.substr(0, 50), // Ensure uniqueness and length less than 50
+        distractionFreeMode: false, // Facebook-like distraction free mode
+      })
+    }
+    this.gitalk.render("gitalk-container")
   }
 
   render() {
