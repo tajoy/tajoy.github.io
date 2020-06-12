@@ -285,8 +285,8 @@ const ScrollLayer = styled.div`
 
 const ContentWrapper = styled.div`
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   margin-left: auto;
   margin-right: auto;
 `
@@ -324,68 +324,84 @@ function shouldShowTOC(context) {
   }
   return show
 }
-const lastSize = {}
 
-const Layout = ({
-  children,
-  storage,
-  context,
-  isDesktop,
-  $model,
-  $app: {
-    $model: { isExpand },
-  },
-  $actions: { onResize },
-}) => {
-  const { tocOffsetX, tocOffsetY, tocShow, nowItem, goTopShow } = $model
-  let needMoveLeft = shouldShowTOC(context)
-  if (!isDesktop) {
-    needMoveLeft = false
+class Layout extends React.Component {
+  constructor(props) {
+    super(props)
+    this.lastSize = {}
   }
-  const updateTOC = () => {
-    if (lastSize.width !== innerWidth && lastSize.height !== innerHeight) {
+
+  updateTOC = () => {
+    const {
+      $actions: { onResize },
+    } = this.props
+    if (
+      this.lastSize.width !== window.innerWidth &&
+      this.lastSize.height !== window.innerHeight
+    ) {
       onResize()
     }
-    lastSize.width = innerWidth
-    lastSize.height = innerHeight
+    this.lastSize.width = window.innerWidth
+    this.lastSize.height = window.innerHeight
   }
-  setTimeout(updateTOC, 1)
-  return (
-    <LayoutContainer>
-      <Sidebar in={isExpand} timeout={500} />
-      <Page
-        in={isExpand}
-        isExpand={isExpand}
-        timeout={500}
-        onEntered={updateTOC}
-        onExited={updateTOC}
-      >
-        <Header needMoveLeft={needMoveLeft} />
-        <ScrollLayer
-          id="scrollContainer"
-          isExpand={isExpand}
-          needMoveLeft={needMoveLeft}
-        >
-          <ContentWrapper id="contentContainer">
-            <ArticleWrapper>
-              <TOC
-                isExpand={isExpand}
-                nowItem={nowItem}
-                left={tocOffsetX}
-                top={tocOffsetY}
-                show={tocShow}
-              />
-              <Main>{children}</Main>
-              <GoTop isExpand={isExpand} left={tocOffsetX} show={goTopShow} />
-            </ArticleWrapper>
-          </ContentWrapper>
-          <Footer isExpand={isExpand} />
-        </ScrollLayer>
-      </Page>
-    </LayoutContainer>
-  )
-}
+  componentDidMount() {
+    this.updateTOC()
+  }
 
+  render() {
+    const {
+      children,
+      storage,
+      context,
+      isDesktop,
+      $model,
+      $app: {
+        $model: { isExpand },
+      },
+      $actions: { onResize },
+    } = this.props
+    const { tocOffsetX, tocOffsetY, tocShow, nowItem, goTopShow } = $model
+    let needMoveLeft = shouldShowTOC(context)
+    if (!isDesktop) {
+      needMoveLeft = false
+    }
+
+    return (
+      <LayoutContainer>
+        <Sidebar in={isExpand} timeout={500} />
+        <Page
+          in={isExpand}
+          isExpand={isExpand}
+          timeout={500}
+          onEntered={this.updateTOC}
+          onExited={this.updateTOC}
+        >
+          <Header needMoveLeft={needMoveLeft} />
+          <ScrollLayer
+            id="scrollContainer"
+            isExpand={isExpand}
+            needMoveLeft={needMoveLeft}
+          >
+            <ContentWrapper id="contentContainer">
+              <ArticleWrapper>
+                <TOC
+                  isExpand={isExpand}
+                  nowItem={nowItem}
+                  left={tocOffsetX}
+                  top={tocOffsetY}
+                  show={tocShow}
+                />
+                <Main>{children}</Main>
+                <GoTop isExpand={isExpand} left={tocOffsetX} show={goTopShow} />
+              </ArticleWrapper>
+            </ContentWrapper>
+            <Footer isExpand={isExpand} />
+          </ScrollLayer>
+        </Page>
+      </LayoutContainer>
+    )
+  }
+}
 const tailCall = [withStorage, withContext, withSizes, Layout]
 export default connectModel(
   tailCall.reduceRight((a, b) => b(a)),

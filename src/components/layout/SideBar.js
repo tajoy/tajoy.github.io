@@ -237,7 +237,6 @@ const SideBar = ({
       }
     }
   `)
-  const { windowWidth = window.innerWidth } = context
   let allWordCount = 0
   let timeToReadAll = 0
   for (let i = 0; i < allMarkdownRemark.edges.length; i++) {

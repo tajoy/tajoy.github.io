@@ -49,7 +49,7 @@ const Container = transition.div`
 `
 
 const GoTop = ({ isExpand, left, show }) => {
-  console.log("show", show)
+  // console.log("show", show)
   const onClick = e => {
     e.preventDefault()
     const $container = $("#scrollContainer")

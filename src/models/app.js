@@ -5,9 +5,10 @@ export default {
 
   state: {
     theme: isSet("theme") ? get("theme") : "dark",
-    isExpand: isSet("sidebar.isExpand")
-      ? get("sidebar.isExpand")
-      : window.innerWidth >= 1024,
+    isExpand: true,
+    //   isSet("sidebar.isExpand")
+    //   ? get("sidebar.isExpand")
+    //   : window.innerWidth >= 1024,
   },
 
   subscriptions: {
@@ -18,7 +19,9 @@ export default {
           size: { width: window.innerWidth, height: window.innerHeight },
         })
       }
-      window.addEventListener("resize", onResize)
+      try {
+        window.addEventListener("resize", onResize)
+      } catch {}
       return () => window.removeEventListener("resize", onResize)
     },
   },
@@ -29,7 +32,7 @@ export default {
       set("theme", newTheme)
       return { ...state, theme: newTheme }
     },
-    resize: (state) => {
+    resize: state => {
       if (window.innerWidth < 1024) {
         set("sidebar.isExpand", false)
         return { ...state, isExpand: false }

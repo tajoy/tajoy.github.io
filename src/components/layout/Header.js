@@ -15,7 +15,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: ${rhythm(2)};
+  min-height: ${rhythm(2)};
   border-bottom: ${theme("mode", {
     light: "1px solid #0004",
     dark: "1px solid #000",

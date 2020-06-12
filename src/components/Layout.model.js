@@ -20,7 +20,9 @@ export default {
           type: "onResize",
         })
       }
-      window.addEventListener("resize", listener)
+      try {
+        window.addEventListener("resize", listener)
+      } catch {}
       return () => window.removeEventListener("resize", listener)
     },
     onScroll: ({ dispatch }) => {
@@ -37,7 +39,9 @@ export default {
         }
         container.addEventListener("scroll", listener)
       }
-      addListener()
+      try {
+        addListener()
+      } catch {}
       return () => container.removeEventListener("scroll", listener)
     },
   },

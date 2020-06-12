@@ -49,6 +49,7 @@
     "gatsby-source-filesystem": "^2.3.1",
     "gatsby-transformer-remark": "^2.8.7",
     "gatsby-transformer-sharp": "^2.5.2",
+    "gitalk": "^1.6.2",
     "global": "^4.4.0",
     "invariant": "^2.2.4",
     "is-plain-object": "^3.0.0",
@@ -113,7 +114,7 @@
     "url": "git+https://github.com/tajoy/tajoy.github.io.git"
   },
   "scripts": {
-    "build": "tree src && gatsby build",
+    "build": "gatsby build",
     "develop": "gatsby clean && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",

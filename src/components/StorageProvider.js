@@ -1,11 +1,31 @@
 import React, { useState, useMemo, createContext } from "react"
 import Storages from "js-storage"
 
-export const storages = Storages.initNamespaceStorage("tajoy-blog")
-export const localStorage = storages.localStorage
+let localStorage = null
 
 export const Context = createContext()
 export const Consumer = Context.Consumer
+
+const init = () => {
+  try {
+    window === undefined
+    localStorage = null
+  } catch {
+    localStorage = {
+      keys: () => [],
+      get: () => null,
+      set: () => {},
+      isEmpty: () => true,
+      isSet: () => false,
+      remove: () => {},
+      removeAll: () => {},
+    }
+    return
+  }
+  if (!localStorage) {
+    localStorage = Storages.initNamespaceStorage("tajoy-blog").localStorage
+  }
+}
 
 export const withStorage = Component => {
   return props => {
@@ -25,6 +45,7 @@ export const withStorage = Component => {
 
 function getStorage() {
   const storage = {}
+  init()
   localStorage.keys().forEach(key => {
     storage[key] = localStorage.get(key)
   })
@@ -33,7 +54,6 @@ function getStorage() {
 
 // 防止循环调用锁
 let rLock = false
-
 
 let _orig_set = null
 const Provider = ({ children = null }) => {
@@ -44,6 +64,7 @@ const Provider = ({ children = null }) => {
   const [storage, setStorage] = useState(getStorage())
 
   const updateStorage = () => {
+    init()
     if (rLock) {
       return
     }
@@ -51,7 +72,7 @@ const Provider = ({ children = null }) => {
     setStorage(getStorage())
     setTimeout(() => {
       rLock = false
-    }, 1);
+    }, 1)
   }
   if (_orig_set === null) {
     _orig_set = localStorage.set.bind(localStorage)
@@ -97,23 +118,30 @@ const Provider = ({ children = null }) => {
 export default Provider
 
 export const get = (...args) => {
+  init()
   return localStorage.get(...args)
 }
 export const set = (...args) => {
+  init()
   localStorage.set(...args)
 }
 export const keys = (...args) => {
+  init()
   return localStorage.keys(...args)
 }
 export const isEmpty = (...args) => {
+  init()
   return localStorage.isEmpty(...args)
 }
 export const isSet = (...args) => {
+  init()
   return localStorage.isSet(...args)
 }
 export const remove = (...args) => {
+  init()
   localStorage.remove(...args)
 }
 export const removeAll = (...args) => {
+  init()
   localStorage.removeAll(...args)
 }

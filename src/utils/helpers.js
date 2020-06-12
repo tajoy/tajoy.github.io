@@ -8,5 +8,11 @@ export const withSizes = Component =>
     isDesktop: $withSizes.isDesktop(sizes),
   }))(Component)
 
-export const supportSVG = () =>
-  typeof window.SVGRect !== "undefined" || typeof SVGRect !== "undefined"
+export const supportSVG = () => {
+  try {
+    window === undefined
+  } catch {
+    return true
+  }
+  return typeof window.SVGRect !== "undefined" || typeof SVGRect !== "undefined"
+}

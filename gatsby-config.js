@@ -6,7 +6,7 @@ module.exports = {
     author: {
       name: `Tajoy`,
       summary: `who lives and works in Guiyang, China building funny things.`,
-      photo: `/my-photo.jpg`
+      photo: `/my-photo.jpg`,
     },
     description: `A personal blog for Tajoy.`,
     slogan: [
@@ -248,8 +248,8 @@ module.exports = {
         name: `Tajoy Personal Blog`,
         short_name: `Tajoy`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
+        // background_color: `#22223b`,
+        // theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `content/assets/gatsby-icon.png`,
       },

@@ -1,15 +1,19 @@
 // custom typefaces
 import "typeface-montserrat"
 import "typeface-merriweather"
+
+// 分离到单个文件
 import "gatsby-remark-vscode/styles.css"
 import "./src/styles/index.scss"
 import "normalize.css"
 import "katex/dist/katex.min.css"
+import "gitalk/dist/gitalk.css"
 
 import * as $ from "jquery"
 
 export const wrapPageElement = require(`./src/wrappers/PageWrapper`).default
 export const wrapRootElement = require(`./src/wrappers/RootWrapper`).default
+// https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js
 
 // 封装异步加载资源的方法
 function loadExternalResource(url, type) {
@@ -33,18 +37,13 @@ function loadExternalResource(url, type) {
       tag.src = url
     }
     if (tag) {
+      tag.onabort = () => reject(url)
       tag.onload = () => resolve(url)
       tag.onerror = () => reject(url)
       document.body.appendChild(tag)
-      console.log("loadExternalResource", url, type)
     }
+    console.log("loadExternalResource", url, type)
   })
 }
 
-window.loadExternalResource = loadExternalResource;
-
-/* 以后试着自己部署一下, 并且更换和新增下模型 */
-loadExternalResource(
-  "https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js",
-  "js"
-)
+window.loadExternalResource = loadExternalResource

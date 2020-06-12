@@ -87,13 +87,12 @@ export class SagaModel {
     const { namespace, reducers, sagas } = model
 
     invariant(namespace, "modelManager.model: namespace should be defined")
-
-    // 非热加载时需要判断是否已存在特定的 namespace
-    hot ||
-      invariant(
-        !baseModels.some(model => model.namespace === namespace),
-        `modelManager.model: namespace should be unique :${model.namespace} ,if use webpack please use register with hot parameter`
-      )
+    
+    // // 非服务端渲染和非热加载时需要判断是否已存在特定的 namespace
+    // hot || ssr || invariant(
+    //     !baseModels.some(model => model.namespace === namespace),
+    //     `modelManager.model: namespace should be unique :${model.namespace} ,if use webpack please use register with hot parameter`
+    //   )
 
     invariant(
       !model.subscriptions ||

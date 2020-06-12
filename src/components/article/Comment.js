@@ -5,6 +5,7 @@ import * as $ from "jquery"
 
 import styled from "styled-components"
 import { rhythm, scale } from "../../utils/typography"
+import Gitalk from "gitalk"
 
 const Container = styled.div`
   display: ${props => (props.show ? "block" : "none")};
@@ -20,7 +21,7 @@ class Comment extends React.Component {
       this.gitalk.render("gitalk-container")
       return
     }
-    
+
     Promise.all([
       window.loadExternalResource(
         "https://unpkg.com/gitalk/dist/gitalk.min.js",

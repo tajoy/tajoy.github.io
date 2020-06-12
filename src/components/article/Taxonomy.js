@@ -25,24 +25,25 @@ const SeriesContainer = styled.div`
   display: inline;
 `
 
-const More = ({ article, context, showNav = false }) => {
+const Taxonomy = ({ article, context, showNav = false }) => {
   const { fields = {} } = article
   const { tags, category, series } = fields
   const { page = {} } = context
 
+  // console.log("tags", tags, "category", category, "series", series)
   return (
     <Container>
       {category && (
         <CategoryContainer>
           <Icon type="r" id="folder" />
-          <CategoryLink category={category} />
+          <CategoryLink name={category.name} slug={category.slug} />
         </CategoryContainer>
       )}
       {tags && (
         <TagsContainer>
           <Icon type="s" id="tags" />
           {tags.map((tag, i) => (
-            <TagLink key={i} tag={tag} />
+            <TagLink key={i} name={tag.name} slug={tag.slug} />
           ))}
         </TagsContainer>
       )}
@@ -50,11 +51,11 @@ const More = ({ article, context, showNav = false }) => {
       {series && (
         <SeriesContainer>
           <Icon type="s" id="archive" />
-          <SeriesLink series={series} />
+          <SeriesLink name={series.name} slug={series.slug} />
         </SeriesContainer>
       )}
     </Container>
   )
 }
 
-export default withContext(More)
+export default withContext(Taxonomy)
