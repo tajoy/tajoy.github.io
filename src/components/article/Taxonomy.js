@@ -15,13 +15,13 @@ const Container = styled.div`
   margin: ${rhythm(0.5)} 0;
 `
 
-const TagsContainer = styled.div`
+const TagsContainer = styled.strong`
   display: inline;
 `
-const CategoryContainer = styled.div`
+const CategoryContainer = styled.strong`
   display: inline;
 `
-const SeriesContainer = styled.div`
+const SeriesContainer = styled.strong`
   display: inline;
 `
 

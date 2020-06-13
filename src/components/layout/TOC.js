@@ -99,6 +99,7 @@ const MenuButton = styled.button`
     })};
     box-shadow: 0px 1px 0px 0px currentColor !important;
   }
+  text-align: left !important;
 `
 
 const MenuItem = ({ nowItem, node, maxDepth, depth }) => {

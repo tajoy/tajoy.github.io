@@ -65,7 +65,7 @@ module.exports = {
             options: {
               maxWidth: 590,
               showCaptions: true,
-              inlineCodeMarker: "||",
+              inlineCodeMarker: "~~",
             },
           },
           // {

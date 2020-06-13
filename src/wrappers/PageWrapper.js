@@ -53,7 +53,12 @@ export default ({ element, props }) => {
   )
   return (
     <ContextProvider context={context}>
-      <SEO title={title} lang="zh-CN" />
+      <SEO
+        title={title}
+        lang="zh-CN"
+        description={description}
+        keywords={deep(props, "data.markdownRemark.fields.keywords")}
+      />
       <Layout>{element}</Layout>
     </ContextProvider>
   )

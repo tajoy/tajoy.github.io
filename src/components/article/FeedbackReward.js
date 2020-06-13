@@ -246,7 +246,7 @@ class FeedbackReward extends React.Component {
         <p>
           请我喝杯
           <Icon type="s" id="mug-hot" />
-          波波芋圆奶茶呗 ∠( ᐛ 」∠)＿
+          波波芋圆奶茶呗 ∠( ᐛ 」∠☼)＿
         </p>
         <p>您的鼓励和支持是我持续创造的最大支持 !!!</p>
         <Button

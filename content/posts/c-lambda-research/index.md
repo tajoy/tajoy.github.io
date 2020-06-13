@@ -5,6 +5,16 @@ tags = ["C", "函数式编程", "lambda"]
 series = "C语言的一些小技巧"
 title = "C语言的lambda的探究 - C语言的一些小技巧(1)"
 description = "C语言的一些小技巧 C语言环境下的lambda的探究"
+keywords = [
+    "c语言",
+    "函数式编程",
+    "lambda",
+    "c语言函数",
+    "c语言指针",
+    "c语言static",
+    "c语言吧",
+    "c语言从入门到放弃",
+]
 +++
 
 ## 引子
