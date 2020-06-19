@@ -24,17 +24,18 @@ const pathify = (...args) => {
   return `/${join(parsedArgs, "/")}/`
 }
 
-const createPagePath = node => {
+const createPagePath = (node, slug, prefix = "") => {
   if (node.frontmatter.date) {
     const date = moment(node.frontmatter.date)
     return pathify(
+      prefix,
       date.format("YYYY"),
       date.format("MM"),
       date.format("DD"),
-      node.fields.slug
+      slug
     )
   } else {
-    return pathify(node.fields.slug)
+    return pathify(prefix, slug)
   }
 }
 

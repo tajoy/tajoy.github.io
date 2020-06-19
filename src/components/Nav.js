@@ -2,11 +2,11 @@ import React from "react"
 import { Link } from "gatsby"
 
 import styled from "styled-components"
-import { rhythm, scale } from "../../utils/typography"
+import { rhythm, scale } from "../utils/typography"
 
-import { withContext } from "../ContextProvider"
+import { withContext } from "./ContextProvider"
 
-import Icon from "../Icon"
+import Icon from "./Icon"
 
 const Container = styled.div`
   margin: ${rhythm(0.5)} 0;

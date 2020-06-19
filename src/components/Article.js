@@ -24,11 +24,11 @@ const Article = ({ article, context }) => {
       <Header article={article} context={context} />
       <SEOKeywords>
         {keywords &&
-          keywords.map(k => (
-            <>
+          keywords.map((k, i) => (
+            <div key={i}>
               <b>{k}</b>
               <strong>{k}</strong>
-            </>
+            </div>
           ))}
       </SEOKeywords>
       <Content article={article} context={context} />

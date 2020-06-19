@@ -6,6 +6,7 @@ const QUERY = `
   query AllArticle {
     allMarkdown {
       posts {
+        id
         fields {
           slug
           url
@@ -15,7 +16,11 @@ const QUERY = `
     }
   }
 `
-module.exports = async ({ graphql, actions: { createPage } }) => {
+module.exports = async ({
+  graphql,
+  actions: { createPage },
+  getNodeAndSavePathDependency,
+}) => {
   const result = await graphql(QUERY)
   if (result.errors) {
     throw result.errors
@@ -29,6 +34,7 @@ module.exports = async ({ graphql, actions: { createPage } }) => {
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1]
     const next = index === 0 ? null : posts[index - 1]
+    getNodeAndSavePathDependency(post.id, post.fields.url)
     createPage({
       path: post.fields.url,
       component: template,

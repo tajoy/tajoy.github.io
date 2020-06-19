@@ -3,9 +3,9 @@ const path = require(`path`)
 const { pathify } = require(`../utils`)
 
 const QUERY = `
-  query ArticleList {
-    allMarkdown {
-      posts {
+  query ShaderList {
+    allShaders {
+      shaders {
         id
       }
     }
@@ -20,20 +20,20 @@ module.exports = async ({ graphql, actions: { createPage } }) => {
   }
 
   const template = path.resolve(
-    `${__dirname}/../../src/templates/article-list.js`
+    `${__dirname}/../../src/templates/shader-list.js`
   )
 
-  // Create blog articles page list.
-  const totalCount = result.data.allMarkdown.posts.length
+  // Create blog shaders page list.
+  const totalCount = result.data.allShaders.shaders.length
   const numPages = Math.ceil(totalCount / PAGE_SIZE)
 
   Array.from({ length: numPages }).forEach((_, i) => {
-    const url = `/article-list/${i + 1}`
+    const url = `/shader-list/${i + 1}`
     createPage({
       path: url,
       component: template,
       context: {
-        title: "文章列表",
+        title: "Shader列表",
         total: totalCount,
         currentPage: i + 1,
         totalPage: numPages,

@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import * as $ from "jquery"
 
 import styled from "styled-components"
-import { rhythm, scale } from "../../utils/typography"
+import { rhythm, scale } from "../utils/typography"
 import Gitalk from "gitalk"
 
 const Container = styled.div`
@@ -21,8 +21,7 @@ class Comment extends React.Component {
       this.gitalk.render("gitalk-container")
       return
     }
-    const { article } = this.props
-    const { id = location.pathname } = article
+    const { id = location.pathname } = this.props
     const $container = $("#gitalk-container")
     if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
       $container.html(
@@ -45,11 +44,9 @@ class Comment extends React.Component {
   }
 
   render() {
-    const { article } = this.props
-    const { fields = {} } = article
-    const { showComments } = fields
-    // console.log("showComments", showComments)
-    return <Container id="gitalk-container" show={showComments}></Container>
+    const { show } = this.props
+    // console.log("showComments", show)
+    return <Container id="gitalk-container" show={show}></Container>
   }
 }
 

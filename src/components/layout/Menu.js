@@ -285,7 +285,7 @@ class Menu extends React.Component {
               <Item>
                 <MenuLink location={location} to="/article-list/1">
                   <Icon type="s" id="list" />
-                  文章列表
+                  文章
                 </MenuLink>
               </Item>
               <Item
@@ -295,7 +295,7 @@ class Menu extends React.Component {
               >
                 <MenuLink location={location} to="/category/">
                   <Icon type="s" id="th" />
-                  内容分类
+                  分类
                   <LCounter isDesktop={isDesktop} location={location} to="/category/" to="/category/">
                     {allCategory.edges.length}
                   </LCounter>
@@ -328,7 +328,7 @@ class Menu extends React.Component {
               >
                 <MenuLink location={location} to="/tags/">
                   <Icon type="s" id="tags" />
-                  标签汇总
+                  标签
                   <LCounter isDesktop={isDesktop} location={location} to="/tags/">
                     {allTag.edges.length}
                   </LCounter>
@@ -361,7 +361,7 @@ class Menu extends React.Component {
               >
                 <MenuLink location={location} to="/series/">
                   <Icon type="s" id="pen-square" />
-                  系列文章
+                  系列
                   <LCounter isDesktop={isDesktop} location={location} to="/series/">
                     {allSeries.edges.length}
                   </LCounter>
@@ -386,6 +386,12 @@ class Menu extends React.Component {
                     ))}
                   </SubMenu>
                 </Fade>
+              </Item>
+              <Item>
+                <MenuLink location={location} to="/shader-list/1">
+                  <Icon type="s" id="paint-brush" />
+                  Shader
+                </MenuLink>
               </Item>
               <Item>
                 <MenuLink location={location} to="/about-me/">

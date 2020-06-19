@@ -1,5 +1,5 @@
 const toml = require("toml")
-
+const SITE_URL = `https://tajoy.net/`
 module.exports = {
   siteMetadata: {
     title: `Tajoy's Blog`,
@@ -19,7 +19,7 @@ module.exports = {
       "}",
       "```",
     ].join("\n"),
-    siteUrl: `https://tajoy.net/`,
+    siteUrl: SITE_URL,
     buildSince: `2014/06/18 01:56:03 +0800`,
     social: {
       twitter: `tajoy4abit`,
@@ -50,8 +50,28 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/shaders`,
+        name: `shaders`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-shader`,
+      options: {
+        basePath: SITE_URL,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
+        position: true,
+        commonmark: true,
+        footnotes: true,
+        pedantic: true,
+        gfm: true,
+        yaml: true,
+        breaks: false,
         excerpt_separator: `<!-- more -->`,
         delimiters: "+++",
         engines: {

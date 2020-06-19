@@ -10,4 +10,6 @@ module.exports = combineFn([
   require("./create-pages/category"),
   require("./create-pages/series"),
   require("./create-pages/tags"),
+  require("./create-pages/shader"),
+  require("./create-pages/shader-list"),
 ])

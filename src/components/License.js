@@ -4,12 +4,12 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import theme from "styled-theming"
 
-import { LIGHT, DARK } from "../../theme/colors"
-import { rhythm, scale } from "../../utils/typography"
+import { LIGHT, DARK } from "../theme/colors"
+import { rhythm, scale } from "../utils/typography"
 
-import { withContext } from "../ContextProvider"
+import { withContext } from "./ContextProvider"
 
-import Icon from "../Icon"
+import Icon from "./Icon"
 
 const Container = styled.div`
   border-left: 3px solid

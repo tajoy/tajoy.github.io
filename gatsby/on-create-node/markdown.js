@@ -9,24 +9,23 @@ module.exports = context => {
 
   const {
     frontmatter: {
-      keywords,
       showComments,
       draft,
       title,
       description,
       date,
-      tags,
     },
   } = node
 
   const filePath = createFilePath({ node, getNode })
+  const slug = slugify(filePath)
   createNodeField({
     name: `slug`,
     node,
-    value: slugify(filePath),
+    value: slug,
   })
 
-  const pagePath = createPagePath(node)
+  const pagePath = createPagePath(node, slug, "article")
   createNodeField({
     name: `url`,
     node,
@@ -54,26 +53,6 @@ module.exports = context => {
       node,
       name: "date",
       value: date,
-    })
-  }
-
-  if (keywords) {
-    createNodeField({
-      node,
-      name: "keywords",
-      value: keywords,
-    })
-  } else {
-    const tagsNames = []
-    if (tags) {
-      tags.forEach(tag => {
-        tagsNames.push(tag)
-      })
-    }
-    createNodeField({
-      node,
-      name: "keywords",
-      value: tagsNames,
     })
   }
 

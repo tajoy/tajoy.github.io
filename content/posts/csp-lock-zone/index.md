@@ -61,7 +61,7 @@ Mac 下打开 CLIP STUDIO PAINT.app\Contents\MacOS\CLIP STUDIO PAINT
 
 也可以使用下面的脚本试一下:
 
-> :exclamation::exclamation::exclamation:**未经测试**:exclamation::exclamation::exclamation:
+> :exclamation: **脚本未经测试** :exclamation:
 >
 > 我没有老版本, 所以该代码没有经过测试, 欢迎反馈
 

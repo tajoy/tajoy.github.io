@@ -8,6 +8,7 @@ import "./src/styles/index.scss"
 import "normalize.css"
 import "katex/dist/katex.min.css"
 import "gitalk/dist/gitalk.css"
+import "glslEditor/build/glslEditor.css"
 
 import * as $ from "jquery"
 
@@ -47,3 +48,8 @@ function loadExternalResource(url, type) {
 }
 
 window.loadExternalResource = loadExternalResource
+
+loadExternalResource(
+  "https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js",
+  "js"
+)

@@ -9,12 +9,12 @@ import styled, { keyframes, css } from "styled-components"
 import theme from "styled-theming"
 import transition from "styled-transition-group"
 
-import { LIGHT, DARK } from "../../theme/colors"
-import { rhythm, scale } from "../../utils/typography"
+import { LIGHT, DARK } from "../theme/colors"
+import { rhythm, scale } from "../utils/typography"
 
-import { withContext } from "../ContextProvider"
+import { withContext } from "./ContextProvider"
 
-import Icon from "../Icon"
+import Icon from "./Icon"
 
 const Container = styled.div`
   display: flex;
