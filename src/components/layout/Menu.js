@@ -296,7 +296,12 @@ class Menu extends React.Component {
                 <MenuLink location={location} to="/category/">
                   <Icon type="s" id="th" />
                   分类
-                  <LCounter isDesktop={isDesktop} location={location} to="/category/" to="/category/">
+                  <LCounter
+                    isDesktop={isDesktop}
+                    location={location}
+                    to="/category/"
+                    to="/category/"
+                  >
                     {allCategory.edges.length}
                   </LCounter>
                 </MenuLink>
@@ -309,7 +314,8 @@ class Menu extends React.Component {
                           to={`/category/${node.slug}/`}
                         >
                           <span>{node.name}</span>
-                          <LCounter isDesktop={isDesktop}
+                          <LCounter
+                            isDesktop={isDesktop}
                             location={location}
                             to={`/category/${node.slug}/`}
                           >
@@ -329,7 +335,11 @@ class Menu extends React.Component {
                 <MenuLink location={location} to="/tags/">
                   <Icon type="s" id="tags" />
                   标签
-                  <LCounter isDesktop={isDesktop} location={location} to="/tags/">
+                  <LCounter
+                    isDesktop={isDesktop}
+                    location={location}
+                    to="/tags/"
+                  >
                     {allTag.edges.length}
                   </LCounter>
                 </MenuLink>
@@ -342,7 +352,8 @@ class Menu extends React.Component {
                           to={`/tags/${node.slug}/`}
                         >
                           <span>{node.name}</span>
-                          <LCounter isDesktop={isDesktop}
+                          <LCounter
+                            isDesktop={isDesktop}
                             location={location}
                             to={`/tags/${node.slug}/`}
                           >
@@ -362,7 +373,11 @@ class Menu extends React.Component {
                 <MenuLink location={location} to="/series/">
                   <Icon type="s" id="pen-square" />
                   系列
-                  <LCounter isDesktop={isDesktop} location={location} to="/series/">
+                  <LCounter
+                    isDesktop={isDesktop}
+                    location={location}
+                    to="/series/"
+                  >
                     {allSeries.edges.length}
                   </LCounter>
                 </MenuLink>
@@ -375,7 +390,8 @@ class Menu extends React.Component {
                           to={`/series/${node.slug}/`}
                         >
                           <span>{node.name}</span>
-                          <LCounter isDesktop={isDesktop}
+                          <LCounter
+                            isDesktop={isDesktop}
                             location={location}
                             to={`/series/${node.slug}/`}
                           >
@@ -386,6 +402,12 @@ class Menu extends React.Component {
                     ))}
                   </SubMenu>
                 </Fade>
+              </Item>
+              <Item>
+                <MenuLink location={location} to="/photo-list/1">
+                  <Icon type="s" id="images" />
+                  摄影
+                </MenuLink>
               </Item>
               <Item>
                 <MenuLink location={location} to="/shader-list/1">

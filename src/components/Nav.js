@@ -22,21 +22,38 @@ const StyledLink = styled(Link)`
   align-items: center;
 `
 
+const Image = styled.img`
+  width: 60px;
+  height: auto;
+  margin: 0;
+`
+
 const Nav = ({ article, context }) => {
   const { page = {} } = context
   const { previous, next } = page
-
   return (
     <Container>
       {previous && (
         <StyledLink to={previous.fields.url}>
           <Icon type="s" id="arrow-left" />
-          <span>{previous.fields.title}</span>
+          {previous.fields.title && <span>{previous.fields.title}</span>}
+          {previous.childImageExt && previous.childImageExt.tinyImg && (
+            <Image
+              alt="previous photo"
+              src={`data:image/jpg;base64, ${previous.childImageExt.tinyImg.jpg}`}
+            />
+          )}
         </StyledLink>
-      )}
+      ) || <div></div>}
       {next && (
         <StyledLink to={next.fields.url}>
-          <span>{next.fields.title}</span>
+          {next.fields.title && <span>{next.fields.title}</span>}
+          {next.childImageExt && next.childImageExt.tinyImg && (
+            <Image
+              alt="next photo"
+              src={`data:image/jpg;base64, ${next.childImageExt.tinyImg.jpg}`}
+            />
+          )}
           <Icon type="s" id="arrow-right" />
         </StyledLink>
       )}

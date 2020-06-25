@@ -348,6 +348,16 @@ class Layout extends React.Component {
     this.updateTOC()
   }
 
+  componentDidUpdate() {
+    if (this.prevLocation !== this.props.context.location) {
+      const $container = $("#scrollContainer")
+      $container.animate({
+        scrollTop: 0,
+      }, 0)
+    }
+    this.prevLocation = this.props.context.location
+  }
+
   render() {
     const {
       children,

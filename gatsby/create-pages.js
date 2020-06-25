@@ -12,4 +12,6 @@ module.exports = combineFn([
   require("./create-pages/tags"),
   require("./create-pages/shader"),
   require("./create-pages/shader-list"),
+  require("./create-pages/photo"),
+  require("./create-pages/photo-list"),
 ])

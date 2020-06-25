@@ -1,14 +1,23 @@
 import { set, get, isSet } from "../components/StorageProvider"
 
+function getDefaultIsExpand() {
+  if (isSet("sidebar.isExpand")) {
+    return get("sidebar.isExpand")
+  } else {
+    try {
+      return window.innerWidth >= 1024
+    } catch {
+      return true
+    }
+  }
+}
+
 export default {
   namespace: "app",
 
   state: {
     theme: isSet("theme") ? get("theme") : "dark",
-    isExpand: true,
-    //   isSet("sidebar.isExpand")
-    //   ? get("sidebar.isExpand")
-    //   : window.innerWidth >= 1024,
+    isExpand: getDefaultIsExpand(),
   },
 
   subscriptions: {

@@ -25,8 +25,17 @@ const pathify = (...args) => {
 }
 
 const createPagePath = (node, slug, prefix = "") => {
-  if (node.frontmatter.date) {
+  if (node.frontmatter && node.frontmatter.date) {
     const date = moment(node.frontmatter.date)
+    return pathify(
+      prefix,
+      date.format("YYYY"),
+      date.format("MM"),
+      date.format("DD"),
+      slug
+    )
+  } else if (node.fields && node.fields.date) {
+    const date = moment(node.fields.date)
     return pathify(
       prefix,
       date.format("YYYY"),

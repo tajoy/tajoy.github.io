@@ -1,14 +1,10 @@
 const createContext = require("gl")
-const fs = require("fs")
 const sharp = require("sharp")
 const GIFEncoder = require("gifencoder")
 const concat = require("concat-stream")
 const { performance } = require("perf_hooks")
 
 const GlslCanvas = require("./GlslCanvas")
-const utils = require("./utils.js")
-
-const stream = require("stream")
 
 const sleep = t => new Promise(resolve => setTimeout(resolve, t))
 

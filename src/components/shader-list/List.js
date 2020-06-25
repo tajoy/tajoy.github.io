@@ -5,7 +5,7 @@ import styled from "styled-components"
 import theme from "styled-theming"
 import { rhythm, scale } from "../../utils/typography"
 
-import Pagination from "./Pagination"
+import Pagination from "../Pagination"
 
 const Container = styled.div`
   margin-bottom: ${rhythm(0.5)};
@@ -14,11 +14,15 @@ const Container = styled.div`
 const List = ({ shaders, context }) => {
   return (
     <Container>
-      {context && context.currentPage && <Pagination context={context} />}
+      {context && context.currentPage && (
+        <Pagination context={context} paginationPrefix="/shader-list" />
+      )}
       {shaders.map((shader, i) => (
         <Item key={i} context={context} {...shader} />
       ))}
-      {context && context.currentPage && <Pagination context={context} />}
+      {context && context.currentPage && (
+        <Pagination context={context} paginationPrefix="/shader-list" />
+      )}
     </Container>
   )
 }

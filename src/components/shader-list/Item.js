@@ -31,7 +31,11 @@ const Container = styled.div`
   align-items: flex-start;
 `
 
-const SubContainer = styled.div``
+const SubContainer = styled.div`
+  :not(:first-child) {
+    margin-left: ${rhythm(1)};
+  }
+`
 
 const Preview = styled.img`
   width: ${rhythm(5.0)};

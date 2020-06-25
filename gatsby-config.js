@@ -57,10 +57,15 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-shader`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        basePath: SITE_URL,
+        path: `${__dirname}/content/photos`,
+        name: `photos`,
       },
+    },
+    {
+      resolve: `gatsby-transformer-shader`,
+      options: {},
     },
     {
       resolve: `gatsby-transformer-remark`,
