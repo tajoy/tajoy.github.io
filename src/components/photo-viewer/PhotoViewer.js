@@ -25,9 +25,11 @@ const Canvas = styled.canvas`
 `
 
 const FullViewerWrapper = transition.div`
+
   margin: 0;
   padding: 0;
 
+  z-index: 999999;
   position: fixed;
   top: 0;
   left: 0;

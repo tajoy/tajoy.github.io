@@ -10,8 +10,10 @@ import * as $ from "jquery"
 let GlslEditor
 try {
   GlslEditor = require(`glslEditor/build/glslEditor`)
-} catch {
+  console.log("GlslEditor", GlslEditor)
+} catch (error) {
   GlslEditor = class GlslEditor {}
+  console.log("error:", error)
 }
 
 const Container = styled.div`
@@ -20,7 +22,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: ${rhythm(1.0)} 0;
-  max-width: 400;
 
   .ge_canvas_container {
     position: static !important;
@@ -36,6 +37,7 @@ class GlslEditorComp extends React.Component {
   constructor(props) {
     super(props)
     GlslEditorComp.index += 1
+    this.containerRef = React.createRef()
   }
   static index = 0
 
@@ -58,7 +60,7 @@ class GlslEditorComp extends React.Component {
     try {
       if (!this.glslEditor) {
         this.glslEditor = new GlslEditor(`#${this.id()}`, {
-          canvas_size: 320,
+          canvas_size: this.containerRef.current.getBoundingClientRect().width,
           canvas_draggable: false,
           canvas_follow: false,
           theme: "monokai",
@@ -86,12 +88,14 @@ class GlslEditorComp extends React.Component {
           })
         }
       }
-    } catch {}
+    } catch (error) {
+      console.log("error:", error)
+    }
   }
 
   render() {
     const { frag } = this.props
-    return <Container id={this.id()} frag={frag} />
+    return <Container id={this.id()} frag={frag} ref={this.containerRef} />
   }
 }
 
