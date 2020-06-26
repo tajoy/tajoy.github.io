@@ -99,6 +99,7 @@ module.exports = ({
             fileNode.absolutePath,
             exifrOptions
           )
+          exifrParsed.gps = await exifr.gps(fileNode.absolutePath)
           ret = _.merge({}, metadata, exifrParsed)
           await cache.set(key(`metadata`, fileNode), ret)
           return ret

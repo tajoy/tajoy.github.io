@@ -1,10 +1,12 @@
 import React from "react"
 import styled from "styled-components"
+import transition from "styled-transition-group"
 
 import Axios from "axios"
 
 import { blobToSrc } from "../../utils/helpers"
 import Viewer from "./Viewer"
+import ExifList from "./ExifList"
 
 const axios = Axios.create()
 const Container = styled.div`
@@ -18,10 +20,11 @@ const Canvas = styled.canvas`
   height: ${props => `${props.height}px`};
   filter: ${props => `blur(${props.blur}px)`};
   transition: filter 500ms ease-in;
+
+  cursor: ${props => (props.blur > 0.1 ? "unset" : "pointer")};
 `
 
-const FullViewerWrapper = styled.div`
-  display: none;
+const FullViewerWrapper = transition.div`
   margin: 0;
   padding: 0;
 
@@ -30,9 +33,35 @@ const FullViewerWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+
+  display: flex;
+  transition: opacity 1s;
+  justify-content: center;
+  align-items: center;
+  background-color: #000a;
+
+  &:enter {
+    opacity: 0.01;
+  }
+  &:enter-active {
+    opacity: 1;
+    transition: 500ms ease-in;
+  }
+  &:exit {
+    opacity: 1;
+  }
+  &:exit-active {
+    opacity: 0.01;
+    transition: 500ms ease-out;
+  }
 `
 
-const FullViewer = styled.img``
+const FullViewer = styled.img`
+  width: auto;
+  height: auto;
+  max-width: 95%;
+  max-height: 95%;
+`
 
 class PhotoViewer extends React.Component {
   constructor(props) {
@@ -46,6 +75,7 @@ class PhotoViewer extends React.Component {
       loaded: false,
       progress: 0.0,
       blur: 10,
+      showFullViewer: false,
     }
   }
 
@@ -135,7 +165,6 @@ class PhotoViewer extends React.Component {
         height,
         tinyImg,
         smallImg,
-        onClick: () => {},
         changeBlur: blur =>
           self.setState({
             blur,
@@ -163,8 +192,19 @@ class PhotoViewer extends React.Component {
     this.lastPhotoId = this.props.photo.id
   }
 
+  toggleFullViewer = () => {
+    const { imageSrc, showFullViewer } = this.state
+    if (!showFullViewer && !imageSrc) {
+      return
+    }
+    this.setState({
+      showFullViewer: !showFullViewer,
+    })
+  }
+
   render() {
-    const { blur, width, height } = this.state
+    const { photo } = this.props
+    const { blur, width, height, showFullViewer, imageSrc } = this.state
     return (
       <Container ref={this.containerRef}>
         <Canvas
@@ -172,9 +212,16 @@ class PhotoViewer extends React.Component {
           ref={this.canvasRef}
           width={width}
           height={height}
+          onClick={this.toggleFullViewer}
         />
-        <FullViewerWrapper>
-          <FullViewer />
+        <ExifList photo={photo} />
+        <FullViewerWrapper
+          in={showFullViewer}
+          unmountOnExit
+          timeout={500}
+          onClick={this.toggleFullViewer}
+        >
+          <FullViewer src={imageSrc} />
         </FullViewerWrapper>
       </Container>
     )

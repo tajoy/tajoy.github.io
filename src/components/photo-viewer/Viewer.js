@@ -80,7 +80,6 @@ class Viewer {
     height,
     tinyImg,
     smallImg,
-    onClick,
     changeBlur,
   }) {
     this.canvas = canvas
@@ -93,8 +92,6 @@ class Viewer {
     this.progress = 0.0
     this.animated = true
     this.image = null
-    this.canvas.addEventListener("click", onClick)
-    this.canvas.addEventListener("touch", onClick)
     this.startLoop()
     this.tinyImgToCells()
   }
