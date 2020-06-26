@@ -108,7 +108,7 @@ const ExifList = ({ photo }) => {
   const {
     childImageExt: { metadata },
   } = photo
-  console.log("metadata", metadata)
+  // console.log("metadata", metadata)
   return (
     <Container>
       <Pair>
