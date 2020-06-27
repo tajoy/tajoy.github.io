@@ -4,29 +4,19 @@ import { Link, graphql } from "gatsby"
 import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 
-import List from "../components/article-list/List"
+import UpdateFrequency from "./index/update-frequency/UpdateFrequency"
+import Recently from "./index/recently/Recently"
 
 const Container = styled.div`
   margin: ${rhythm(0.5)};
 `
 
-const StyledLink = styled(Link)`
-  margin: ${rhythm(1)};
-  font-size: ${rhythm(1)};
-  @media screen and (max-width: 1024px) {
-    font-size: ${rhythm(0.9)};
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 18px !important;
-  }
-`
-
 const Index = ({ data, location }) => {
   return (
     <Container>
-      <h1>最近发布</h1>
-      <List posts={data.allMarkdown.posts} />
-      <StyledLink to="/article-list/1">查看更多...</StyledLink>
+      <h1>Tajoy's Blog</h1>
+      <UpdateFrequency updates={data.updateFrequency.updates} />
+      <Recently posts={data.allMarkdown.posts} />
     </Container>
   )
 }
@@ -38,6 +28,14 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    updateFrequency {
+      updates {
+        year
+        weeksInYear
+        weekOfYear
+        articles
       }
     }
     allMarkdown(limit: 5) {

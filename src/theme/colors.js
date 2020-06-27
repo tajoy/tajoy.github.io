@@ -65,6 +65,16 @@ export const DARK = {
       BG: chroma("#eaae24"),
     },
   },
+
+  UPDATE: {
+    FREQUENCY: [
+      chroma("#ebedf0"),
+      chroma("#deb1fb"),
+      chroma("#b450f7"),
+      chroma("#850ad6"),
+      chroma("#480675"),
+    ],
+  },
 }
 
 export const LIGHT = {
@@ -118,5 +128,15 @@ export const LIGHT = {
       FG: chroma("#7d1111"),
       BG: chroma("#eaae24"),
     },
+  },
+
+  UPDATE: {
+    FREQUENCY: [
+      chroma("#ebedf0"),
+      chroma("#deb1fb"),
+      chroma("#b450f7"),
+      chroma("#850ad6"),
+      chroma("#480675"),
+    ],
   },
 }
