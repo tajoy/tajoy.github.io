@@ -179,7 +179,7 @@ const Contacts = styled.div`
 `
 
 const ContactCell = styled.div`
-  font-size: ${rhythm(2)};
+  font-size: ${rhythm(1.5)};
 `
 
 const SideBar = ({
@@ -209,6 +209,7 @@ const SideBar = ({
             qq
             twitter
             wechat
+            email
           }
           qrcode {
             qq
@@ -284,9 +285,9 @@ const SideBar = ({
             <a
               target="_blank"
               href={`mailto:${siteMetadata.social.email}`}
-              title={siteMetadata.social.email}
+              title={siteMetadata.social.github}
             >
-              <Icon type="b" id="github" />
+              <Icon type="s" id="envelope" />
             </a>
           </ContactCell>
           <ContactCell>
