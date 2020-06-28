@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 
+import FriendLinks from "./index/friend-links/FriendLinks"
 import UpdateFrequency from "./index/update-frequency/UpdateFrequency"
 import Recently from "./index/recently/Recently"
 
@@ -17,6 +18,7 @@ const Index = ({ data, location }) => {
       <h1>Tajoy's Blog</h1>
       <UpdateFrequency updates={data.updateFrequency.updates} />
       <Recently posts={data.allMarkdown.posts} />
+      <FriendLinks friends={data.allFriend.edges.map(({ node }) => node)} />
     </Container>
   )
 }
@@ -28,6 +30,16 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    allFriend {
+      edges {
+        node {
+          name
+          link
+          headPic
+          description
+        }
       }
     }
     updateFrequency {

@@ -23,12 +23,12 @@ const StyledLink = styled(Link)`
   }
 `
 
-const Recently = ({ posts, context }) => {
+const Recently = ({ posts = [], context }) => {
   return (
     <Container>
       <h2>最近发布</h2>
-      {posts.map(post => (
-        <Item key={post.fields.slug} context={context} {...post} />
+      {posts.map((post, i) => (
+        <Item key={i} context={context} {...post} />
       ))}
       <StyledLink to="/article-list/1">查看更多...</StyledLink>
     </Container>

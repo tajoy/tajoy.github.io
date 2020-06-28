@@ -38,7 +38,7 @@ const Example = styled.div`
   }
 `
 
-const UpdateFrequency = ({ updates }) => {
+const UpdateFrequency = ({ updates = [] }) => {
   const now = moment()
   const begin = moment().year(now.year() - 1)
   const weeks = now.clone().subtract(begin).get("weeks")

@@ -270,6 +270,47 @@ const SideBar = ({
         <Logo />
         <DecImg src="/profile.jpg" animation />
         <Slogan dangerouslySetInnerHTML={{ __html: siteMetadata.slogan }} />
+        <Contacts>
+          <ContactCell>
+            <a
+              target="_blank"
+              href={`https://github.com/${siteMetadata.social.github}`}
+              title={siteMetadata.social.github}
+            >
+              <Icon type="b" id="github" />
+            </a>
+          </ContactCell>
+          <ContactCell>
+            <a
+              target="_blank"
+              href={`mailto:${siteMetadata.social.email}`}
+              title={siteMetadata.social.email}
+            >
+              <Icon type="b" id="github" />
+            </a>
+          </ContactCell>
+          <ContactCell>
+            <LinkShowImage
+              src={siteMetadata.qrcode.qq}
+              alt={siteMetadata.social.qq}
+            >
+              <Icon type="b" id="qq" />
+            </LinkShowImage>
+          </ContactCell>
+          <ContactCell>
+            <LinkShowImage
+              src={siteMetadata.qrcode.wechat}
+              alt={siteMetadata.social.wechat}
+            >
+              <Icon type="b" id="weixin" />
+            </LinkShowImage>
+          </ContactCell>
+          <ContactCell>
+            <Link target="_blank" to="/rss.xml" title="Tajoy's Blog RSS Feed">
+              <Icon type="s" id="rss" />
+            </Link>
+          </ContactCell>
+        </Contacts>
         <Statistics>
           <table>
             <tbody>
@@ -298,38 +339,6 @@ const SideBar = ({
             </tbody>
           </table>
         </Statistics>
-        <Contacts>
-          <ContactCell>
-            <a
-              target="_blank"
-              href={`https://github.com/${siteMetadata.social.github}`}
-              title={siteMetadata.social.github}
-            >
-              <Icon type="b" id="github" />
-            </a>
-          </ContactCell>
-          <ContactCell>
-            <LinkShowImage
-              src={siteMetadata.qrcode.qq}
-              alt={siteMetadata.social.qq}
-            >
-              <Icon type="b" id="qq" />
-            </LinkShowImage>
-          </ContactCell>
-          <ContactCell>
-            <LinkShowImage
-              src={siteMetadata.qrcode.wechat}
-              alt={siteMetadata.social.wechat}
-            >
-              <Icon type="b" id="weixin" />
-            </LinkShowImage>
-          </ContactCell>
-          <ContactCell>
-            <Link target="_blank" to="/rss.xml" title="Tajoy's Blog RSS Feed">
-              <Icon type="s" id="rss" />
-            </Link>
-          </ContactCell>
-        </Contacts>
       </Content>
       <ToggleHotSpot
         isExpand={transOpts.in}

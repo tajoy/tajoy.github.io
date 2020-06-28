@@ -26,6 +26,7 @@ module.exports = {
       github: `tajoy`,
       qq: `328111241`,
       wechat: `tj328111241`,
+      email: `tj328111241@gmail.com`,
     },
     qrcode: {
       qq: `/qrcode/qq.jpg`,
@@ -64,8 +65,21 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/friends`,
+        name: `friends`,
+      },
+    },
+    {
       resolve: `gatsby-transformer-shader`,
       options: {},
+    },
+    {
+      resolve: `gatsby-transformer-friends`,
+      options: {
+        source: `friends`,
+      },
     },
     {
       resolve: `gatsby-transformer-remark`,

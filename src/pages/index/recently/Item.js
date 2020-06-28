@@ -47,7 +47,7 @@ const Pair = styled.div`
   white-space: nowrap;
 `
 
-const Item = ({ fields, excerpt, isDesktop }) => {
+const Item = ({ fields = {}, excerpt, isDesktop }) => {
   const title = fields.title || fields.slug
 
   return (

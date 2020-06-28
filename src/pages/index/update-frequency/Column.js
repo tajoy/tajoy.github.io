@@ -31,7 +31,7 @@ const YearOrMonth = styled.div`
   transform: translateX(4px) rotate(-90deg);
 `
 
-const Column = ({ year, month, updates }) => {
+const Column = ({ year, month, updates = [] }) => {
   return (
     <Container>
       <YearOrMonth>
