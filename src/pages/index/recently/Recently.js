@@ -9,12 +9,18 @@ import { rhythm, scale } from "../../../utils/typography"
 import Item from "./Item"
 
 const Container = styled.div`
-  margin-bottom: ${rhythm(0.5)};
+  display: flex;
+  flex-direction: column;
+  margin: ${rhythm(1)} 0;
+  h2 {
+    margin: ${rhythm(1)} 0;
+  }
 `
 
 const StyledLink = styled(Link)`
-  margin: ${rhythm(1)} 0;
+  margin: ${rhythm(1)} auto;
   font-size: ${rhythm(0.8)};
+  text-align: center;
   @media screen and (max-width: 1024px) {
     font-size: ${rhythm(0.9)};
   }

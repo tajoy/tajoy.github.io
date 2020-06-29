@@ -11,7 +11,13 @@ import { LIGHT, DARK } from "../../../theme/colors"
 
 import Friend from "./Friend"
 
-const Container = styled.div``
+const Container = styled.div`
+  h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: ${rhythm(1)};
+  }
+`
 
 const FriendsContainer = styled.div`
   display: flex;

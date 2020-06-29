@@ -33,6 +33,7 @@ export const pageQuery = graphql`
     }
     allFile(
       filter: { sourceInstanceName: { eq: "photos" } }
+      sort: {fields: fields___date, order: DESC}
       skip: $skip
       limit: $limit
     ) {

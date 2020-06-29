@@ -30,8 +30,9 @@ const Container = styled.div`
 `
 
 const Title = styled.div`
+  padding: 0;
   font-size: ${rhythm(0.8)};
-  margin: ${rhythm(0.8)} 0 ${rhythm(0.4)} 0;
+  margin: ${rhythm(0.5)} 0;
   @media screen and (max-width: 1024px) {
     font-size: ${rhythm(0.9)};
   }

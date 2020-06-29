@@ -55,6 +55,7 @@
     "gatsby-transformer-sharp": "^2.5.2",
     "gitalk": "^1.6.2",
     "global": "^4.4.0",
+    "glslCanvas": "^0.1.7",
     "glslEditor": "^0.0.22",
     "glslify": "^7.0.0",
     "glslify-hex": "^2.1.1",

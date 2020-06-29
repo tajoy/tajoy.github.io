@@ -1,13 +1,12 @@
 import React from "react"
-import { graphql } from "gatsby"
-
+import { Link, graphql } from "gatsby"
 
 const NotFoundPage = ({ data, location }) => {
-
   return (
     <div>
-      <h1>Not Found</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      <h1>404 - 哇哦, 这是什么?</h1>
+      <p>你貌似发现了什么, 但是不要遗失在这未知的领域!</p>
+      <Link to="/">返回首页</Link>
     </div>
   )
 }

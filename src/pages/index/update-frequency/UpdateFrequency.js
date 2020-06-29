@@ -13,6 +13,9 @@ import Column from "./Column"
 
 const Container = styled.div`
   width: auto;
+  h2 {
+    margin: ${rhythm(1)} 0;
+  }
 `
 
 const CellsContainer = styled.div`
@@ -92,7 +95,7 @@ const UpdateFrequency = ({ updates = [] }) => {
   // console.log("columns", columns)
   return (
     <Container>
-      <h2>更新频次</h2>
+      <h2>更新频率</h2>
       <CellsContainer>
         {columns.map((column, i) => <Column key={i} {...column} />).reverse()}
       </CellsContainer>

@@ -8,16 +8,37 @@ import FriendLinks from "./index/friend-links/FriendLinks"
 import UpdateFrequency from "./index/update-frequency/UpdateFrequency"
 import Recently from "./index/recently/Recently"
 
+import PhotoBox from "./index/photo-box/PhotoBox"
+import ShaderBox from "./index/shader-box/ShaderBox"
+
 const Container = styled.div`
   margin: ${rhythm(0.5)};
 `
+const Title = styled.h1`
+  text-align: center;
+  font-size: ${rhythm(2)} !important;
+`
 
 const Index = ({ data, location }) => {
+  const titles = [
+    "Tajoy's Blog",
+    "欢迎来到我的博客~",
+    "来啦~ 老弟",
+    "此站我建, 求个留言!",
+    "来啦~ 老妹",
+    "来啦~ 老铁",
+    "来啦~ 兄贵",
+    "常回家看看~ 回家看看~",
+  ]
+  const title = titles[Math.floor(Math.random() * titles.length)]
+
   return (
     <Container>
-      <h1>Tajoy's Blog</h1>
-      <UpdateFrequency updates={data.updateFrequency.updates} />
+      <Title>{title}</Title>
       <Recently posts={data.allMarkdown.posts} />
+      <ShaderBox />
+      <PhotoBox />
+      <UpdateFrequency updates={data.updateFrequency.updates} />
       <FriendLinks friends={data.allFriend.edges.map(({ node }) => node)} />
     </Container>
   )

@@ -10,10 +10,10 @@ import * as $ from "jquery"
 let GlslEditor
 try {
   GlslEditor = require(`glslEditor/build/glslEditor`)
-  console.log("GlslEditor", GlslEditor)
+  // console.log("GlslEditor", GlslEditor)
 } catch (error) {
   GlslEditor = class GlslEditor {}
-  console.log("error:", error)
+  // console.log("error:", error)
 }
 
 const Container = styled.div`
@@ -49,11 +49,22 @@ class GlslEditorComp extends React.Component {
     if (!this.glslEditor) return
     const shader = this.glslEditor.shader
     shader.requestRedraw()
+    for (const key in shader.canvas.textures) {
+      if (shader.canvas.textures.hasOwnProperty(key)) {
+        const texture = shader.canvas.textures[key]
+        texture.on("loaded", args => {
+          setTimeout(() => {
+            shader.requestRedraw()
+          }, 100)
+        })
+      }
+    }
   }
 
-  componentDidUpdate() {
-    console.log("componentDidUpdate", this.id())
+  shouldComponentUpdate() {
+    // console.log("componentDidUpdate", this.id())
     this.update()
+    return true
   }
 
   componentDidMount() {

@@ -105,7 +105,7 @@ class Cell extends React.Component {
     let popup = null
   if (update === null || update === undefined) return <></>
     if (update.articles && update.articles[0] && update.articles[0]) {
-      const week = moment().year(update.year).week(update.weekOfYear - 1).day(0)
+      const week = moment().year(update.year).week(update.weekOfYear).day(0)
       const begin = week.clone().day(0).format("ll")
       const end = week.clone().day(6).format("ll")
       popup = (
