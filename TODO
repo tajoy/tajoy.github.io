@@ -29,8 +29,7 @@
     ☐ 1.局部某些宏替换: 加括号
     ☐ 2.基于线程的静态变量: static __thread
   CLIP STUDIO PAINT:
-   ☐ CSP的锁区问题
-     1.9.1+, mac os Catalina 10.15+, 可以针对 App 设置语言环境
+   ✔ CSP的锁区问题 1.9.1+, mac os Catalina 10.15+, 可以针对 App 设置语言环境 @done(20-06-30 23:50)
   WEB开发:
     ✘ Less 插件批量生成 css 动画 @keyrames @cancelled(20-06-08 17:13)
   运维:

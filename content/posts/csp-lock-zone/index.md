@@ -33,7 +33,6 @@ keywords = [
     "clip studio paint破解",
     "clip studio paint改为中文版",
 ]
-draft = true
 +++
 
 
