@@ -61,7 +61,7 @@ const Shader = ({ shader, context }) => {
       <FeedbackReward />
       <License context={context} />
       <Nav />
-      <Comment id={id} show={showComments} />
+      <Comment show={showComments} />
     </Container>
   )
 }

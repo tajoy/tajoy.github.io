@@ -61,7 +61,7 @@ const Photo = ({ photo, context }) => {
       <FeedbackReward />
       <License context={context} />
       <Nav />
-      <Comment id={id} show={showComments} />
+      <Comment show={showComments} />
     </Container>
   )
 }

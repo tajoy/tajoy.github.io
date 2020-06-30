@@ -23,7 +23,7 @@ const Footer = ({ article, context }) => {
       <License context={context} />
       <Taxonomy article={article} />
       <Nav />
-      <Comment id={id} show={showComments} />
+      <Comment show={showComments} />
     </Container>
   )
 }
