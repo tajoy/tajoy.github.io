@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tajoy's Blog RSS Feed]]></title><description><![CDATA[A personal blog for Tajoy.]]></description><link>https://tajoy.net</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 30 Jun 2020 16:00:31 GMT</lastBuildDate><item><title><![CDATA[CSP的锁区问题]]></title><description><![CDATA[引子 由于 CLIP STUDIO PAINT 的销售策略, 每个国家/地区的软件授权不通用, 软件有一些限制.  而繁体版的比简体版的更便宜, 于是…]]></description><link>https://tajoy.netundefined</link><guid isPermaLink="false">https://tajoy.netcsp-lock-zone</guid><pubDate>Sat, 13 Jun 2020 06:17:12 GMT</pubDate><content:encoded>&lt;h2 data-toc-id=&quot;66710328-620b-425e-982d-a28c07a9086f&quot;&gt;引子&lt;/h2&gt;
+&lt;p&gt;由于 CLIP STUDIO PAINT 的销售策略, 每个国家/地区的软件授权不通用, 软件有一些限制.&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 526px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fa3b3bf21f71246cb5404bfbfcec74b7/7883f/Snipaste_2020-06-13_14-47-59.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.21621621621622%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIE/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAcFBIs//xAAYEAEAAwEAAAAAAAAAAAAAAAAAARESIv/aAAgBAQABBQLlUMv/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAY/An//xAAZEAACAwEAAAAAAAAAAAAAAAAAAREhMZH/2gAIAQEAAT8hilPLE3E+jg8XT//aAAwDAQACAAMAAAAQCB//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8QrX//xAAWEQEBAQAAAAAAAAAAAAAAAAABACH/2gAIAQIBAT8QNZL/xAAbEAEBAAEFAAAAAAAAAAAAAAABEQAhQVFhgf/aAAgBAQABPxAgivJv1iaUTSgMOEPLn//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;CSP锁区限制&quot;
+        title=&quot;CSP锁区限制&quot;
+        src=&quot;/static/fa3b3bf21f71246cb5404bfbfcec74b7/7883f/Snipaste_2020-06-13_14-47-59.jpg&quot;
+        srcset=&quot;/static/fa3b3bf21f71246cb5404bfbfcec74b7/a80bd/Snipaste_2020-06-13_14-47-59.jpg 148w,
+/static/fa3b3bf21f71246cb5404bfbfcec74b7/1c91a/Snipaste_2020-06-13_14-47-59.jpg 295w,
+/static/fa3b3bf21f71246cb5404bfbfcec74b7/7883f/Snipaste_2020-06-13_14-47-59.jpg 526w&quot;
+        sizes=&quot;(max-width: 526px) 100vw, 526px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;CSP锁区限制&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;而繁体版的比简体版的更便宜, 于是…&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 data-toc-id=&quot;3801879f-a824-4efd-9291-bd5e84c84cdb&quot;&gt;CSP &amp;#x3C;= 1.9.1&lt;/h2&gt;
+&lt;p&gt;16进制修改方法&lt;/p&gt;
+&lt;p&gt;Mac 下打开 CLIP STUDIO PAINT.app\Contents\MacOS\CLIP STUDIO PAINT
+用16进制工具搜索 84C0751B488B35 ，替换为 84C0EB47488B35 。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Mac下一款二进制编辑软件:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.sweetscape.com/download/010editor/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;010 Editor&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;也可以使用下面的脚本试一下:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img class=&quot;emoji-icon&quot; alt=&quot;emoji-exclamation&quot; data-icon=&quot;emoji-exclamation&quot; style=&quot;display: inline; margin: 0; vertical-align: middle&quot; src=&quot;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACKFBMVEUAAADnLS2/AADsRETxWFjxWVnxVlbtR0f/Z2f/AAD/pKTZGhpPAADnMzPFDw//KSnSFha8Dg7VExPJEhLQKSnLEhLFERG2AADGEhLCDw/BERG+EBC5EBC2EBCzDg6xDg6sDQ3KEhKwCQlVBwfoFhbBEBCxCgqLCwvNExO6EBC8ERGxDw+wDw+pDg6ZDAyaDQ22Dw+iKiraJCTGERHcLy/HIyOhDg6rDg6nDAycDQ2cCwuLCQmMCwt+Cgp2CAiOCQl9Cgp5CQmfDQ3/JCSRDQ10CAhsCAhtCAhtBwf/l5f6s7P4srL/r6//paXlMjLwTEzxTk7xTk7vSEjnMzPUFhbhGhrSFhbNERHbExPIEhLIEhLbFBTYExPDERHEERHWExPTExO+Dw+/ERHSExPOEhK0Dw+1Dw/NEhLKEhKgDw+rDQ3IERHGERF5BwfDERHAERG+EBDKEhK7EBC5EBDFERG2Dw+1EBDDERHBERGwDw+vDg68EBC6EBCqDw+ZDAyYDAyZCwuYDAyZDQ3JRUXXTU3DQ0PJIyPQKCjNKCjQKCjFISGlDAy7ExO6ExOYDQ2rDg6pDQ1+BwcrAQGVDAynDg6kDQ2SCwtyCAiCCgqHCwuACgplBwfjGhrlGxvmGxveExPiFBThFBTfFBTcFBTZExPWExPTEhLSEhLPEhLQEhLOEhLMEhLNEhLIEhLKEhLHERHBEBC6EBC2DQ27ERG1Dw+0Dw+tDg7////tViPFAAAAnHRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQICAgFho6Chny+E/khl8TxM9+MpNe3VFiHjxQwW0qwGDLuSAqV7kf1kdvdKWv3wNEb75iYijZZ+EBswE0bQ770sC7aMEcigAwF9/PFXDWOOUQWoUqBiAAAAAWJLR0S33QA7ZwAAAAd0SU1FB+QFDhEANrtgV6kAAAEWSURBVCjPY2AAA0YmZhZWVlY2dnYGVMDB6enl7e3t48uFJsHN4+cfEBgYFMyLJsHHHzJn7tx5oWECaBKCQuHzFyxcEBEpjCYhIhoVvWjRophYMTQJcYm4+MWLFyckSqJJMEglJS9ZsiQlVRpdQiYtfenSpRmZsugSclnZy5Ytz2GQR5dQyM1bsXJVvqISuoSySsHqNYVFqmroEuoaxWvXlZRqMmAArbLy9RWV2pgSOlXVG2pqdTEl9OrqGxqb9DHEDQw5m1tajTgxJIxN2to7OrtMzdAlzLt7Nm7a3MtggS5h2de/ZcvWCROtMPwxafKUbVOn6VujS9jYTp8xc9ZsO3sM2x0cnZxdXB0x/cHg5u7u4YHgAgA7eUrxB37bCgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0wNC0wNlQyMDoyMDo0MyswMDowMGJLEAIAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMDQtMDZUMjA6MjA6NDMrMDA6MDATFqi+AAAAAElFTkSuQmCC&quot; title=&quot;emoji-exclamation&quot;&gt; &lt;strong&gt;脚本未经测试&lt;/strong&gt; &lt;img class=&quot;emoji-icon&quot; alt=&quot;emoji-exclamation&quot; data-icon=&quot;emoji-exclamation&quot; style=&quot;display: inline; margin: 0; vertical-align: middle&quot; src=&quot;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACKFBMVEUAAADnLS2/AADsRETxWFjxWVnxVlbtR0f/Z2f/AAD/pKTZGhpPAADnMzPFDw//KSnSFha8Dg7VExPJEhLQKSnLEhLFERG2AADGEhLCDw/BERG+EBC5EBC2EBCzDg6xDg6sDQ3KEhKwCQlVBwfoFhbBEBCxCgqLCwvNExO6EBC8ERGxDw+wDw+pDg6ZDAyaDQ22Dw+iKiraJCTGERHcLy/HIyOhDg6rDg6nDAycDQ2cCwuLCQmMCwt+Cgp2CAiOCQl9Cgp5CQmfDQ3/JCSRDQ10CAhsCAhtCAhtBwf/l5f6s7P4srL/r6//paXlMjLwTEzxTk7xTk7vSEjnMzPUFhbhGhrSFhbNERHbExPIEhLIEhLbFBTYExPDERHEERHWExPTExO+Dw+/ERHSExPOEhK0Dw+1Dw/NEhLKEhKgDw+rDQ3IERHGERF5BwfDERHAERG+EBDKEhK7EBC5EBDFERG2Dw+1EBDDERHBERGwDw+vDg68EBC6EBCqDw+ZDAyYDAyZCwuYDAyZDQ3JRUXXTU3DQ0PJIyPQKCjNKCjQKCjFISGlDAy7ExO6ExOYDQ2rDg6pDQ1+BwcrAQGVDAynDg6kDQ2SCwtyCAiCCgqHCwuACgplBwfjGhrlGxvmGxveExPiFBThFBTfFBTcFBTZExPWExPTEhLSEhLPEhLQEhLOEhLMEhLNEhLIEhLKEhLHERHBEBC6EBC2DQ27ERG1Dw+0Dw+tDg7////tViPFAAAAnHRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQICAgFho6Chny+E/khl8TxM9+MpNe3VFiHjxQwW0qwGDLuSAqV7kf1kdvdKWv3wNEb75iYijZZ+EBswE0bQ770sC7aMEcigAwF9/PFXDWOOUQWoUqBiAAAAAWJLR0S33QA7ZwAAAAd0SU1FB+QFDhEANrtgV6kAAAEWSURBVCjPY2AAA0YmZhZWVlY2dnYGVMDB6enl7e3t48uFJsHN4+cfEBgYFMyLJsHHHzJn7tx5oWECaBKCQuHzFyxcEBEpjCYhIhoVvWjRophYMTQJcYm4+MWLFyckSqJJMEglJS9ZsiQlVRpdQiYtfenSpRmZsugSclnZy5Ytz2GQR5dQyM1bsXJVvqISuoSySsHqNYVFqmroEuoaxWvXlZRqMmAArbLy9RWV2pgSOlXVG2pqdTEl9OrqGxqb9DHEDQw5m1tajTgxJIxN2to7OrtMzdAlzLt7Nm7a3MtggS5h2de/ZcvWCROtMPwxafKUbVOn6VujS9jYTp8xc9ZsO3sM2x0cnZxdXB0x/cHg5u7u4YHgAgA7eUrxB37bCgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0wNC0wNlQyMDoyMDo0MyswMDowMGJLEAIAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMDQtMDZUMjA6MjA6NDMrMDA6MDATFqi+AAAAAElFTkSuQmCC&quot; title=&quot;emoji-exclamation&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我没有老版本, 所以该代码没有经过测试, 欢迎反馈&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div
+              class=&quot;gatsby-code-button-container&quot;
+              data-toaster-id=&quot;&quot;
+              data-toaster-class=&quot;gatsby-code-button-toaster&quot;
+              data-toaster-text-class=&quot;gatsby-code-button-toaster-text&quot;
+              data-toaster-text=&quot;&quot;
+              data-toaster-duration=&quot;3500&quot;
+              onClick=&quot;copyToClipboard(`temp=\$(mktemp)
+if [ ! -f &apos;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT.bak&apos; ]; then
+    cp &apos;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT&apos; &apos;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT.bak&apos;
+fi;
+cp &apos;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT&apos; &amp;quot;\$temp/bin&amp;quot;
+xxd -p &amp;quot;\$temp/bin&amp;quot; &gt; &amp;quot;\$temp/hex&amp;quot;
+sed -i &apos;s/84C0751B488B35/84C0EB47488B35/g&apos; &amp;quot;\$temp/hex&amp;quot;
+xxd -p -r &amp;quot;\$temp/hex&amp;quot; &gt; &apos;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT&apos;`, ``)&quot;
+            &gt;
+              &lt;div
+                class=&quot;gatsby-code-button&quot;
+                data-tooltip=&quot;&quot;
+              &gt;
+                &lt;svg class=&quot;gatsby-code-button-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0V0z&quot;/&gt;&lt;path d=&quot;M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z&quot;/&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;bash&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;temp=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;$(mktemp)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; [ &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;-f&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;#39;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT.bak&amp;#39;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; ]&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;then&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    cp &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;#39;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT&amp;#39;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;#39;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT.bak&amp;#39;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;fi&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;cp &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;#39;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT&amp;#39;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-12&quot;&gt;$temp&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;/bin&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;xxd -p &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-12&quot;&gt;$temp&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;/bin&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-12&quot;&gt;$temp&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;/hex&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;sed -i &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;#39;s/84C0751B488B35/84C0EB47488B35/g&amp;#39;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-12&quot;&gt;$temp&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;/hex&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;xxd -p -r &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-12&quot;&gt;$temp&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;/hex&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;#39;/Applications/CLIP STUDIO 1.5/App/CLIP STUDIO PAINT.app/Contents/MacOS/CLIP STUDIO PAINT&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 data-toc-id=&quot;6dddb864-e5c6-4a9b-a46e-1d925ec5a82a&quot;&gt;CSP &gt;= 1.9.1, Mac OS &amp;#x3C; Catalina 10.15&lt;/h2&gt;
+&lt;p&gt;可以通过 open 命令改变语言环境&lt;/p&gt;
+&lt;div
+              class=&quot;gatsby-code-button-container&quot;
+              data-toaster-id=&quot;&quot;
+              data-toaster-class=&quot;gatsby-code-button-toaster&quot;
+              data-toaster-text-class=&quot;gatsby-code-button-toaster-text&quot;
+              data-toaster-text=&quot;&quot;
+              data-toaster-duration=&quot;3500&quot;
+              onClick=&quot;copyToClipboard(`open -a /Applications/CLIP\ STUDIO\ 1.5/App/CLIP\ STUDIO\ PAINT.app --args -AppleLanguages &apos;(zh-tw)&apos;`, ``)&quot;
+            &gt;
+              &lt;div
+                class=&quot;gatsby-code-button&quot;
+                data-tooltip=&quot;&quot;
+              &gt;
+                &lt;svg class=&quot;gatsby-code-button-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0V0z&quot;/&gt;&lt;path d=&quot;M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z&quot;/&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;bash&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;open -a /Applications/CLIP&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-1&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;STUDIO&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-1&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;1.5/App/CLIP&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-1&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;STUDIO&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-1&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;PAINT.app --args -AppleLanguages &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;#39;(zh-tw)&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 data-toc-id=&quot;b59004bf-fcb2-41ce-9312-2e312dba1bcb&quot;&gt;CSP &gt;= 1.9.1, Mac OS &gt;= Catalina 10.15&lt;/h2&gt;
+&lt;p&gt;可以针对 App 设置语言环境&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5bc680a5055aae5bd56c9a3fd3524fca/8f488/Snipaste_2020-06-13_14-11-12.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 77.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAQABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAefMi2D/xAAXEAEBAQEAAAAAAAAAAAAAAAAAEQEQ/9oACAEBAAEFAt1VROf/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAbEAADAAIDAAAAAAAAAAAAAAAAAREhMUFhcf/aAAgBAQABPyGXZm8KFPlnoTvQlD//2gAMAwEAAgADAAAAEFAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxABAQEAAwEBAAAAAAAAAAAAAREAITGBQZH/2gAIAQEAAT8QqRT6h0X3SFIO13el7nmwfmqcGZTHf//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;针对App选择语言&quot;
+        title=&quot;针对App选择语言&quot;
+        src=&quot;/static/5bc680a5055aae5bd56c9a3fd3524fca/1c72d/Snipaste_2020-06-13_14-11-12.jpg&quot;
+        srcset=&quot;/static/5bc680a5055aae5bd56c9a3fd3524fca/a80bd/Snipaste_2020-06-13_14-11-12.jpg 148w,
+/static/5bc680a5055aae5bd56c9a3fd3524fca/1c91a/Snipaste_2020-06-13_14-11-12.jpg 295w,
+/static/5bc680a5055aae5bd56c9a3fd3524fca/1c72d/Snipaste_2020-06-13_14-11-12.jpg 590w,
+/static/5bc680a5055aae5bd56c9a3fd3524fca/a8a14/Snipaste_2020-06-13_14-11-12.jpg 885w,
+/static/5bc680a5055aae5bd56c9a3fd3524fca/fbd2c/Snipaste_2020-06-13_14-11-12.jpg 1180w,
+/static/5bc680a5055aae5bd56c9a3fd3524fca/8f488/Snipaste_2020-06-13_14-11-12.jpg 1336w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;针对App选择语言&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+  }
+  
+  .grvsc-code {
+    display: inline-block;
+    min-width: 100%;
+  }
+  
+  .grvsc-line {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-line-highlighted {
+    background-color: var(--grvsc-line-highlighted-background-color, transparent);
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, transparent);
+  }
+  
+  .monokai {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  .monokai .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  .monokai .grvsc-tsSx3w-6 { color: #E6DB74; }
+  .monokai .grvsc-tsSx3w-7 { color: #F92672; }
+  .monokai .grvsc-tsSx3w-4 { color: #AE81FF; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-6 { color: #E6DB74; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-4 { color: #AE81FF; }
+  
+  /* Monokai */
+  @media (prefers-color-scheme: dark) {
+    .grvsc-mm-tsSx3w {
+      background-color: #272822;
+      color: #f8f8f2;
+    }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-6 { color: #E6DB74; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-4 { color: #AE81FF; }
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-12 { color: #A31515; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-4 { color: #0000FF; }
+  
+  /* Visual Studio Light */
+  @media (prefers-color-scheme: light) {
+    .grvsc-mm-tCN5OG {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-12 { color: #A31515; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-4 { color: #0000FF; }
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[Markdown样式测试]]></title><description><![CDATA[仅供测试]]></description><link>https://tajoy.netundefined</link><guid isPermaLink="false">https://tajoy.netdemo</guid><pubDate>Thu, 07 May 2020 08:37:00 GMT</pubDate><content:encoded>&lt;p&gt;仅供测试&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h1 data-toc-id=&quot;0a265a14-b4b0-41cf-851d-7530aab162cc&quot;&gt;h1 Heading h1 标题 &lt;img class=&quot;emoji-icon&quot; alt=&quot;emoji-smile&quot; data-icon=&quot;emoji-smile&quot; style=&quot;display: inline; margin: 0; vertical-align: middle&quot; src=&quot;data:image/png;base64, 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&quot; title=&quot;emoji-smile&quot;&gt;&lt;/h1&gt;
+&lt;h2 data-toc-id=&quot;36e9c48c-0a4f-4ede-9ca8-ddaaef9ee678&quot;&gt;h2 Heading h2 标题&lt;/h2&gt;
+&lt;h3 data-toc-id=&quot;f0c7ed35-8f66-4354-ae53-80a1ef42e9d4&quot;&gt;h3 Heading h3 标题&lt;/h3&gt;
+&lt;h4 data-toc-id=&quot;09d679c7-2472-48ef-bcb6-afa1bd3ef6bc&quot;&gt;h4 Heading h4 标题&lt;/h4&gt;
+&lt;h5 data-toc-id=&quot;22f4a2e3-9539-4e2b-ac75-d2ab787318d2&quot;&gt;h5 Heading h5 标题&lt;/h5&gt;
+&lt;h6 data-toc-id=&quot;c736abf2-858b-4ff3-90e5-bbdd03e8768d&quot;&gt;h6 Heading h6 标题&lt;/h6&gt;
+&lt;h2 data-toc-id=&quot;d8c67352-2c87-4c92-a93a-ee9ae07bba18&quot;&gt;Horizontal Rules&lt;/h2&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h2 data-toc-id=&quot;94ad9844-6a04-42d1-a2ca-f5847716067e&quot;&gt;Typographic replacements&lt;/h2&gt;
+&lt;p&gt;Enable typographer option to see result.&lt;/p&gt;
+&lt;p&gt;(c) (C) (r) (R) (tm) (TM) (p) (P) +-&lt;/p&gt;
+&lt;p&gt;test.. test… test… test?… test!…&lt;/p&gt;
+&lt;p&gt;!!!!!! ???? ,,  — ---&lt;/p&gt;
+&lt;p&gt;“Smartypants, double quotes” and ‘single quotes’&lt;/p&gt;
+&lt;p&gt;“智能标点,双引号” 和 ‘单引号’&lt;/p&gt;
+&lt;h2 data-toc-id=&quot;f9a49908-ce25-4d7c-86f8-392ccbc5a2f2&quot;&gt;Emphasis 重点标注&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;This is bold text&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This is bold text&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This is italic text&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This is italic text&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;Strikethrough&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这是加粗的文字&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这是加粗的文字&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;这是斜体文字&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;这是斜体文字&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;这是带删除线的文字&lt;/del&gt;&lt;/p&gt;
+&lt;h2 data-toc-id=&quot;8b252119-c99f-47c0-b9ad-0b8117c6bcd2&quot;&gt;Blockquotes 引用段落&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Blockquotes can also be nested…&lt;/p&gt;
+&lt;p&gt;引用段落可以嵌套&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;…by using additional greater-than signs right next to each other…&lt;/p&gt;
+&lt;p&gt;…通过使用更多的向右箭头来嵌套&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;…or with spaces between arrows.&lt;/p&gt;
+&lt;p&gt;…也可以在箭头之间加入空格&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h2 data-toc-id=&quot;51dd31ce-6d06-4d4c-b486-f9d8cbc2197e&quot;&gt;Lists 列表&lt;/h2&gt;
+&lt;p&gt;Unordered 无序列表&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a list by starting a line with &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, or &lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;可以通过 &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, 或 &lt;code&gt;*&lt;/code&gt; 起行来创建列表&lt;/li&gt;
+&lt;li&gt;Sub-lists are made by indenting 2 spaces:&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;子列表的话, 需要在前面缩进2个空格&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Marker character change forces new list start:&lt;/li&gt;
+&lt;li&gt;标记字符强制新的列表开始&lt;/li&gt;
+&lt;li&gt;Ac tristique libero volutpat at&lt;/li&gt;
+&lt;li&gt;速度快两极分化的进口量佛手柑&lt;/li&gt;
+&lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;
+&lt;li&gt;士大夫供货商更换进口量&lt;/li&gt;
+&lt;li&gt;Nulla volutpat aliquam velit&lt;/li&gt;
+&lt;li&gt;阿道夫高等师范供货商体育io&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Very easy!&lt;/li&gt;
+&lt;li&gt;非常简单&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ordered 有序列表&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;
+&lt;li&gt;士大夫更换士大夫如果&lt;/li&gt;
+&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;
+&lt;li&gt;囖和巴拿马,编码, 塞尔特和你们, 和&lt;/li&gt;
+&lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;
+&lt;li&gt;富贵花愉快大法官是&lt;/li&gt;
+&lt;li&gt;You can use sequential numbers…&lt;/li&gt;
+&lt;li&gt;你可以使用序列的字符&lt;/li&gt;
+&lt;li&gt;…or keep all the numbers as &lt;code&gt;1.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;…或者全部使用&lt;code&gt;1.&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Start numbering with offset:&lt;/p&gt;
+&lt;p&gt;通过位移起始数字开始:&lt;/p&gt;
+&lt;ol start=&quot;57&quot;&gt;
+&lt;li&gt;foo&lt;/li&gt;
+&lt;li&gt;bar&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 data-toc-id=&quot;bf9c460d-c74b-438e-886d-7e5ca8b14989&quot;&gt;Code 代码&lt;/h2&gt;
+&lt;p&gt;Inline &lt;code&gt;code&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;内联代码 &lt;code&gt;code&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Indented code&lt;/p&gt;
+&lt;p&gt;缩进代码&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;// Some comments&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;line 1 of code&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;line 2 of code&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;line 3 of code&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Block code “fences”&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;Sample text here...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Syntax highlighting&lt;/p&gt;
+&lt;div
+              class=&quot;gatsby-code-button-container&quot;
+              data-toaster-id=&quot;&quot;
+              data-toaster-class=&quot;gatsby-code-button-toaster&quot;
+              data-toaster-text-class=&quot;gatsby-code-button-toaster-text&quot;
+              data-toaster-text=&quot;&quot;
+              data-toaster-duration=&quot;3500&quot;
+              onClick=&quot;copyToClipboard(`var foo = function (bar) {
+  return bar++;
+};
+
+console.log(foo(5));`, ``)&quot;
+            &gt;
+              &lt;div
+                class=&quot;gatsby-code-button&quot;
+                data-tooltip=&quot;&quot;
+              &gt;
+                &lt;svg class=&quot;gatsby-code-button-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0V0z&quot;/&gt;&lt;path d=&quot;M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z&quot;/&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;js&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; bar&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;};&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tCN5OG-1&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;));&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 data-toc-id=&quot;f6478e8c-7b52-41c9-8893-a89d195ce8e0&quot;&gt;Tables&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Option&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td&gt;path to data files to supply the data that will be passed into templates.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;engine&lt;/td&gt;
+&lt;td&gt;engine to be used for processing templates. Handlebars is the default.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ext&lt;/td&gt;
+&lt;td&gt;extension to be used for dest files.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Right aligned columns&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;right&quot;&gt;Option&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;right&quot;&gt;data&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;path to data files to supply the data that will be passed into templates.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;right&quot;&gt;engine&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;engine to be used for processing templates. Handlebars is the default.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;right&quot;&gt;ext&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;extension to be used for dest files.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Center aligned columns&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;Option&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;data&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;path to data files to supply the data that will be passed into templates.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;engine&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;engine to be used for processing templates. Handlebars is the default.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;ext&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;extension to be used for dest files.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 data-toc-id=&quot;4e2ef669-6190-4a3c-a1ad-d4705a4b0894&quot;&gt;Links&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://dev.nodeca.com&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;link text&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://nodeca.github.io/pica/demo/&quot; title=&quot;title text!&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;link with title&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Autoconverted link &lt;a href=&quot;https://github.com/nodeca/pica&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://github.com/nodeca/pica&lt;/a&gt; (enable linkify to see)&lt;/p&gt;
+&lt;h2 data-toc-id=&quot;27758e15-8513-41e5-b804-eb27dcea8c0b&quot;&gt;Images&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 240px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5477ce484b67607df12a074de62c372a/09b79/profile.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAUEA//EABYBAQEBAAAAAAAAAAAAAAAAAAECAP/aAAwDAQACEAMQAAAB2yN84eiuGf0KnYHf/8QAGxAAAgMAAwAAAAAAAAAAAAAAAQIAAxESITL/2gAIAQEAAQUCbGJ4BsrjHpkeU0IEb0JWdX//xAAWEQADAAAAAAAAAAAAAAAAAAAAEBH/2gAIAQMBAT8BK//EABYRAAMAAAAAAAAAAAAAAAAAAAAQEf/aAAgBAgEBPwEj/8QAHRAAAgIBBQAAAAAAAAAAAAAAAAERIQIQMUFCcf/aAAgBAQAGPwJrrBOLlGxTvKjh+FoWv//EAB4QAQADAAEFAQAAAAAAAAAAAAEAESExEEFRYXGR/9oACAEBAAE/IbHNas4fMrU26JDsZ/ZU+AsMxFe7EwYq3s4CD96NNn//2gAMAwEAAgADAAAAEPsoAP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABgRAAIDAAAAAAAAAAAAAAAAAAABEBFR/9oACAECAQE/EGX0cf/EAB0QAQEAAgIDAQAAAAAAAAAAAAERACExgUFRYZH/2gAIAQEAAT8QRujZUBr+POA85vJF4D7mwwSoBp3nBWytQbcGum3YA8YQsLRZ8xGwq9scsAnrEASinRn/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Profile&quot;
+        title=&quot;Profile&quot;
+        src=&quot;/static/5477ce484b67607df12a074de62c372a/09b79/profile.jpg&quot;
+        srcset=&quot;/static/5477ce484b67607df12a074de62c372a/a80bd/profile.jpg 148w,
+/static/5477ce484b67607df12a074de62c372a/09b79/profile.jpg 240w&quot;
+        sizes=&quot;(max-width: 240px) 100vw, 240px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;Profile&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;img src=&quot;https://octodex.github.com/images/minion.png&quot; alt=&quot;Minion&quot;&gt;
+&lt;img src=&quot;https://octodex.github.com/images/stormtroopocat.jpg&quot; alt=&quot;Stormtroopocat&quot; title=&quot;The Stormtroopocat&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Like links, Images also have a footnote style syntax&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://octodex.github.com/images/dojocat.jpg&quot; alt=&quot;Alt text&quot; title=&quot;The Dojocat&quot;&gt;&lt;/p&gt;
+&lt;p&gt;With a reference later in the document defining the URL location:&lt;/p&gt;
+&lt;h2 data-toc-id=&quot;0a7c2a27-3ffb-43a1-b711-f0eba168127a&quot;&gt;&lt;a href=&quot;https://github.com/markdown-it/markdown-it-emoji&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Emojies&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Classic markup: &lt;img class=&quot;emoji-icon&quot; alt=&quot;emoji-wink&quot; data-icon=&quot;emoji-wink&quot; style=&quot;display: inline; margin: 0; vertical-align: middle&quot; src=&quot;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH5AUOEQA3zGdnPwAABdNJREFUSMeFle1vVMcVxn9n7r3r3btmbWAxfsOJKcXQhEbCiOBAi9KmbZq+hEht0gZVqdKqQpX4QvsH8LUVrar0Q0I/paoipQSFpERVSEhCawpNCqkQpLwEg3mxjXmxvbu+e7333pnTD3YQcmnySEczc2bOefSMzswR7oJj3wFvAcR16GyBoMngFw0mMAC41JFFjrThGK1AIQRbg3X7/zeXme84+zQcG4RyQejfWMDGtLrUrbf1bGtWS7ZntWS7rWdbXerW25jW/o0FygXh2OBs7HzInYvhZyCKoGN5QHU07Whq4ft+Kfiev3DRfX7rkpIUSj6AxtUsm7pRzSYnPsqq6d5GhVdKncHY2IWUYhHu/eNdCC7+CGYasHoPXP2ZPJJfHOxsurd3ILdys/G61mGK7eDnZw9nM7joGnbkGMm5v7nG8MWjM7fSnd1/0IOnn4R8E/T+6Q6Cd5+A0MGG1+HqNvODsKuwK3xgU1fwhScwzZ0gAurmaTegipseJf3PPuonDo/UR+Jfdr/gXv7n41A38JV9IKEPxQyu/7aJS2fSr5WW5V8s9m/qDPq+iwQh4Ph0GDSrk575C9Hxw6PVKzM/vmdV8HbbjgaRP6dAfyF8eFm7elbm9ix44HMP5e7bguRLs7uqoJ/BgaCNKslHr1E7MXTk8rnkybU9MiK/UcxAG7BrB+Wl/lP5znBD0NmLmJho6grvHPg7+98YZGZ6DJJxaIzPjp/Mb9s1hJigs5d8Z7ihvNR/il07GGgDiX4uHDivSzY9mH+tZU35oVzvWiozAX/ee5JEPR75+v2s7Aow82UIYOZqxM2pTCOS4Q+pnLx55PD7M1u+sUJu+GG/R3fNrsq1+Kv95gC1VQ4eHCVfVJ7+9j00525BIwPnuH1XIoxPOC6NNBCBzvYCHW15jGb4zQG5Fn9191JZFfZ7N3yeLRC+X+/zi37J+Mp07TpB2ODx/hLN2TATNxOS1NK+yL9NkKlw/EyDq+MpSWypH4W+5c08OlAk5yt+0S+FBdPHs4VBH15AvGfKEhhPEUKvwaPrA3JExHXl5f0TTFUyfvrDMm0LPVDwjbJ5bR6reXKBYXpGGR7LSJKYnC9IYDzxpAxv4otslRPbPA/nUJeCFQIUPKjWLXElQRqOG1MxbeUcqPLv0ynvHY7JMmVhi8dXNxZY1xPgUnCZourIVI3IRvEBjRo6ZdPEOlv3xADGgVGKLcqidoiqwuL2OuRiFJhILIu7HEvKhsmapZJZ1PqoGtSCSxIbNbQCqK+aY8+W9GJfnEUFTUr4iooFz1HMK9/cAomDpeUMVBHg4S8JKoLnLM4KNByaZAge6oQ0zqIrE3pRtQkzuT3l0JCena7okDYc4ikmUIzvEONoX2Tp6ciQwELgIHCYwOKZDNRirMWoBU/BKC5xTFd06NCQnp3cnmCW7VaeP8XohRH7VjrlVFQQXyAw0CTUU+GdQeHCVaGWQjWBcxeFd48KDQRyAjkzG+OEdMrphRH71vOnGF22W/GjFIB4z3H3au8y+1hX2azxQw+agADyeUecGV7cLSxoVlQhqgubv6XkigrWgDGIetiacuOyPbXnuHsViKMUvNAH6+Bf40yuWkCyvJWBphYTmqKBQBBP6F0BC1qFuGIolQxffgweXA8GA+pB5mEnlKmz2a39R+yvdg7q2wbSgg9e6j55PpK+cU6vrmnWrDvki7m8CSUwiBE8ge4eYfVauL8fujsFkwlkHlo32HFl8kx2683D2XM/ed29BDKpQOrAm/ct1ved1vMduJsdoj0FpGwQEQziDD6C5wRtGIgMbgIal5yOnExPv3Io+922/foSMHZnwvkECtQOnGfo0og72Tzjqk2RhlLTUGvquSrGTkByzdlo2NXHTtuP//FBtvfXf7W/f+4DDgDjzPvchf+PAtA20MHyh1dI3+eXSk+pQCtANWbq43G9/N55PXt0jAvAdSC+e6f4rE4yW0/hnOXm/AlQn7MGn9KS/gu37dbAT7RUnAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0wNC0wNlQyMDoyMDo0MyswMDowMGJLEAIAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMDQtMDZUMjA6MjA6NDMrMDA6MDATFqi+AAAAAElFTkSuQmCC&quot; title=&quot;emoji-wink&quot;&gt; :crush: &lt;img class=&quot;emoji-icon&quot; alt=&quot;emoji-cry&quot; data-icon=&quot;emoji-cry&quot; style=&quot;display: inline; margin: 0; vertical-align: middle&quot; src=&quot;data:image/png;base64, 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&quot; title=&quot;emoji-cry&quot;&gt; :tear: &lt;img class=&quot;emoji-icon&quot; alt=&quot;emoji-laughing&quot; data-icon=&quot;emoji-laughing&quot; style=&quot;display: inline; margin: 0; vertical-align: middle&quot; src=&quot;data:image/png;base64, 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&quot; title=&quot;emoji-laughing&quot;&gt; &lt;img class=&quot;emoji-icon&quot; alt=&quot;emoji-yum&quot; data-icon=&quot;emoji-yum&quot; style=&quot;display: inline; margin: 0; vertical-align: middle&quot; src=&quot;data:image/png;base64, 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&quot; title=&quot;emoji-yum&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Shortcuts (emoticons): :-) :-( 8-) ;)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 data-toc-id=&quot;8bf9c23b-d76e-4a1e-8c59-d18f4c4498ab&quot;&gt;&lt;a href=&quot;https://github.com/KaTeX/KaTeX&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;KaTeX&lt;/a&gt; 数学公式&lt;/h2&gt;
+&lt;p&gt;inline: &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;±&lt;/mo&gt;&lt;msqrt&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/msqrt&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;c = \pm\sqrt{a^2 + b^2}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:1.04em;vertical-align:-0.12661100000000003em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;±&lt;/span&gt;&lt;span class=&quot;mord sqrt&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.913389em;&quot;&gt;&lt;span class=&quot;svg-align&quot; style=&quot;top:-3em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot; style=&quot;padding-left:0.833em;&quot;&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.740108em;&quot;&gt;&lt;span style=&quot;top:-2.9890000000000003em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mbin&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.740108em;&quot;&gt;&lt;span style=&quot;top:-2.9890000000000003em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-2.873389em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hide-tail&quot; style=&quot;min-width:0.853em;height:1.08em;&quot;&gt;&lt;svg width=&apos;400em&apos; height=&apos;1.08em&apos; viewBox=&apos;0 0 400000 1080&apos; preserveAspectRatio=&apos;xMinYMin slice&apos;&gt;&lt;path d=&apos;M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z&apos;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.12661100000000003em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;block:&lt;/p&gt;
+&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;±&lt;/mo&gt;&lt;msqrt&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/msqrt&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;c = \pm\sqrt{a^2 + b^2}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:1.2399999999999998em;vertical-align:-0.177736em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;±&lt;/span&gt;&lt;span class=&quot;mord sqrt&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:1.0622639999999999em;&quot;&gt;&lt;span class=&quot;svg-align&quot; style=&quot;top:-3.2em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3.2em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot; style=&quot;padding-left:1em;&quot;&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.740108em;&quot;&gt;&lt;span style=&quot;top:-2.9890000000000003em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mbin&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.740108em;&quot;&gt;&lt;span style=&quot;top:-2.9890000000000003em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-3.0222640000000003em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3.2em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hide-tail&quot; style=&quot;min-width:1.02em;height:1.28em;&quot;&gt;&lt;svg width=&apos;400em&apos; height=&apos;1.28em&apos; viewBox=&apos;0 0 400000 1296&apos; preserveAspectRatio=&apos;xMinYMin slice&apos;&gt;&lt;path d=&apos;M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
+158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
+c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
+175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
+c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
+-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z&apos;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.177736em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;h2 data-toc-id=&quot;519e5e2d-caac-4829-b453-e3e0e9e9cd3f&quot;&gt;&lt;a href=&quot;https://mermaid-js.github.io/mermaid&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;mermaid&lt;/a&gt; 绘制图表&lt;/h2&gt;
+&lt;div class=&quot;mermaid&quot; data-processed=&quot;true&quot;&gt;&lt;svg id=&quot;mermaid-1593532677442&quot; width=&quot;416&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; height=&quot;58&quot; viewBox=&quot;0 0 416 58&quot;&gt;&lt;style&gt;#mermaid-1593532677442 .label{font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family);color:#333}#mermaid-1593532677442 .label text{fill:#333}#mermaid-1593532677442 .node rect,#mermaid-1593532677442 .node circle,#mermaid-1593532677442 .node ellipse,#mermaid-1593532677442 .node polygon,#mermaid-1593532677442 .node path{fill:#ECECFF;stroke:#9370db;stroke-width:1px}#mermaid-1593532677442 .node .label{text-align:center}#mermaid-1593532677442 .node.clickable{cursor:pointer}#mermaid-1593532677442 .arrowheadPath{fill:#333}#mermaid-1593532677442 .edgePath .path{stroke:#333;stroke-width:1.5px}#mermaid-1593532677442 .edgeLabel{background-color:#e8e8e8;text-align:center}#mermaid-1593532677442 .cluster rect{fill:#ffffde;stroke:#aa3;stroke-width:1px}#mermaid-1593532677442 .cluster text{fill:#333}#mermaid-1593532677442 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family);font-size:12px;background:#ffffde;border:1px solid #aa3;border-radius:2px;pointer-events:none;z-index:100}#mermaid-1593532677442 .actor{stroke:#ccf;fill:#ECECFF}#mermaid-1593532677442 text.actor{fill:#000;stroke:none}#mermaid-1593532677442 .actor-line{stroke:grey}#mermaid-1593532677442 .messageLine0{stroke-width:1.5;stroke-dasharray:&apos;2 2&apos;;stroke:#333}#mermaid-1593532677442 .messageLine1{stroke-width:1.5;stroke-dasharray:&apos;2 2&apos;;stroke:#333}#mermaid-1593532677442 #arrowhead{fill:#333}#mermaid-1593532677442 .sequenceNumber{fill:#fff}#mermaid-1593532677442 #sequencenumber{fill:#333}#mermaid-1593532677442 #crosshead path{fill:#333 !important;stroke:#333 !important}#mermaid-1593532677442 .messageText{fill:#333;stroke:none}#mermaid-1593532677442 .labelBox{stroke:#ccf;fill:#ECECFF}#mermaid-1593532677442 .labelText{fill:#000;stroke:none}#mermaid-1593532677442 .loopText{fill:#000;stroke:none}#mermaid-1593532677442 .loopLine{stroke-width:2;stroke-dasharray:&apos;2 2&apos;;stroke:#ccf}#mermaid-1593532677442 .note{stroke:#aa3;fill:#fff5ad}#mermaid-1593532677442 .noteText{fill:black;stroke:none;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family);font-size:14px}#mermaid-1593532677442 .activation0{fill:#f4f4f4;stroke:#666}#mermaid-1593532677442 .activation1{fill:#f4f4f4;stroke:#666}#mermaid-1593532677442 .activation2{fill:#f4f4f4;stroke:#666}#mermaid-1593532677442 .mermaid-main-font{font-family:&quot;trebuchet ms&quot;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 .section{stroke:none;opacity:0.2}#mermaid-1593532677442 .section0{fill:rgba(102,102,255,0.49)}#mermaid-1593532677442 .section2{fill:#fff400}#mermaid-1593532677442 .section1,#mermaid-1593532677442 .section3{fill:#fff;opacity:0.2}#mermaid-1593532677442 .sectionTitle0{fill:#333}#mermaid-1593532677442 .sectionTitle1{fill:#333}#mermaid-1593532677442 .sectionTitle2{fill:#333}#mermaid-1593532677442 .sectionTitle3{fill:#333}#mermaid-1593532677442 .sectionTitle{text-anchor:start;font-size:11px;text-height:14px;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 .grid .tick{stroke:#d3d3d3;opacity:0.8;shape-rendering:crispEdges}#mermaid-1593532677442 .grid .tick text{font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 .grid path{stroke-width:0}#mermaid-1593532677442 .today{fill:none;stroke:red;stroke-width:2px}#mermaid-1593532677442 .task{stroke-width:2}#mermaid-1593532677442 .taskText{text-anchor:middle;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 .taskText:not([font-size]){font-size:11px}#mermaid-1593532677442 .taskTextOutsideRight{fill:#000;text-anchor:start;font-size:11px;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 .taskTextOutsideLeft{fill:#000;text-anchor:end;font-size:11px}#mermaid-1593532677442 .task.clickable{cursor:pointer}#mermaid-1593532677442 .taskText.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold}#mermaid-1593532677442 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold}#mermaid-1593532677442 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold}#mermaid-1593532677442 .taskText0,#mermaid-1593532677442 .taskText1,#mermaid-1593532677442 .taskText2,#mermaid-1593532677442 .taskText3{fill:#fff}#mermaid-1593532677442 .task0,#mermaid-1593532677442 .task1,#mermaid-1593532677442 .task2,#mermaid-1593532677442 .task3{fill:#8a90dd;stroke:#534fbc}#mermaid-1593532677442 .taskTextOutside0,#mermaid-1593532677442 .taskTextOutside2{fill:#000}#mermaid-1593532677442 .taskTextOutside1,#mermaid-1593532677442 .taskTextOutside3{fill:#000}#mermaid-1593532677442 .active0,#mermaid-1593532677442 .active1,#mermaid-1593532677442 .active2,#mermaid-1593532677442 .active3{fill:#bfc7ff;stroke:#534fbc}#mermaid-1593532677442 .activeText0,#mermaid-1593532677442 .activeText1,#mermaid-1593532677442 .activeText2,#mermaid-1593532677442 .activeText3{fill:#000 !important}#mermaid-1593532677442 .done0,#mermaid-1593532677442 .done1,#mermaid-1593532677442 .done2,#mermaid-1593532677442 .done3{stroke:grey;fill:#d3d3d3;stroke-width:2}#mermaid-1593532677442 .doneText0,#mermaid-1593532677442 .doneText1,#mermaid-1593532677442 .doneText2,#mermaid-1593532677442 .doneText3{fill:#000 !important}#mermaid-1593532677442 .crit0,#mermaid-1593532677442 .crit1,#mermaid-1593532677442 .crit2,#mermaid-1593532677442 .crit3{stroke:#f88;fill:red;stroke-width:2}#mermaid-1593532677442 .activeCrit0,#mermaid-1593532677442 .activeCrit1,#mermaid-1593532677442 .activeCrit2,#mermaid-1593532677442 .activeCrit3{stroke:#f88;fill:#bfc7ff;stroke-width:2}#mermaid-1593532677442 .doneCrit0,#mermaid-1593532677442 .doneCrit1,#mermaid-1593532677442 .doneCrit2,#mermaid-1593532677442 .doneCrit3{stroke:#f88;fill:#d3d3d3;stroke-width:2;cursor:pointer;shape-rendering:crispEdges}#mermaid-1593532677442 .milestone{transform:rotate(45deg) scale(0.8, 0.8)}#mermaid-1593532677442 .milestoneText{font-style:italic}#mermaid-1593532677442 .doneCritText0,#mermaid-1593532677442 .doneCritText1,#mermaid-1593532677442 .doneCritText2,#mermaid-1593532677442 .doneCritText3{fill:#000 !important}#mermaid-1593532677442 .activeCritText0,#mermaid-1593532677442 .activeCritText1,#mermaid-1593532677442 .activeCritText2,#mermaid-1593532677442 .activeCritText3{fill:#000 !important}#mermaid-1593532677442 .titleText{text-anchor:middle;font-size:18px;fill:#000;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 g.classGroup text{fill:#9370db;stroke:none;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family);font-size:10px}#mermaid-1593532677442 g.classGroup text .title{font-weight:bolder}#mermaid-1593532677442 g.clickable{cursor:pointer}#mermaid-1593532677442 g.classGroup rect{fill:#ECECFF;stroke:#9370db}#mermaid-1593532677442 g.classGroup line{stroke:#9370db;stroke-width:1}#mermaid-1593532677442 .classLabel .box{stroke:none;stroke-width:0;fill:#ECECFF;opacity:0.5}#mermaid-1593532677442 .classLabel .label{fill:#9370db;font-size:10px}#mermaid-1593532677442 .relation{stroke:#9370db;stroke-width:1;fill:none}#mermaid-1593532677442 .dashed-line{stroke-dasharray:3}#mermaid-1593532677442 #compositionStart{fill:#9370db;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 #compositionEnd{fill:#9370db;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 #aggregationStart{fill:#ECECFF;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 #aggregationEnd{fill:#ECECFF;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 #dependencyStart{fill:#9370db;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 #dependencyEnd{fill:#9370db;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 #extensionStart{fill:#9370db;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 #extensionEnd{fill:#9370db;stroke:#9370db;stroke-width:1}#mermaid-1593532677442 .commit-id,#mermaid-1593532677442 .commit-msg,#mermaid-1593532677442 .branch-label{fill:lightgrey;color:lightgrey;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 .pieTitleText{text-anchor:middle;font-size:25px;fill:#000;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 .slice{font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 g.stateGroup text{fill:#9370db;stroke:none;font-size:10px;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}#mermaid-1593532677442 g.stateGroup text{fill:#9370db;stroke:none;font-size:10px}#mermaid-1593532677442 g.stateGroup .state-title{font-weight:bolder;fill:#000}#mermaid-1593532677442 g.stateGroup rect{fill:#ECECFF;stroke:#9370db}#mermaid-1593532677442 g.stateGroup line{stroke:#9370db;stroke-width:1}#mermaid-1593532677442 .transition{stroke:#9370db;stroke-width:1;fill:none}#mermaid-1593532677442 .stateGroup .composit{fill:white;border-bottom:1px}#mermaid-1593532677442 .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px}#mermaid-1593532677442 .state-note{stroke:#aa3;fill:#fff5ad}#mermaid-1593532677442 .state-note text{fill:black;stroke:none;font-size:10px}#mermaid-1593532677442 .stateLabel .box{stroke:none;stroke-width:0;fill:#ECECFF;opacity:0.5}#mermaid-1593532677442 .stateLabel text{fill:#000;font-size:10px;font-weight:bold;font-family:&apos;trebuchet ms&apos;, verdana, arial;font-family:var(--mermaid-font-family)}:root{--mermaid-font-family: &apos;&quot;trebuchet ms&quot;, verdana, arial&apos;;--mermaid-font-family: &quot;Comic Sans MS&quot;, &quot;Comic Sans&quot;, cursive}
+
+:root { --mermaid-font-family: &quot;trebuchet ms&quot;, verdana, arial;}&lt;/style&gt;&lt;style&gt;#mermaid-1593532677442 {
+    color: rgb(0, 0, 0);
+    font: 16px &quot;trebuchet ms&quot;, verdana, arial;
+  }&lt;/style&gt;&lt;g transform=&quot;translate(0, 0)&quot;&gt;&lt;g class=&quot;output&quot;&gt;&lt;g class=&quot;clusters&quot;&gt;&lt;/g&gt;&lt;g class=&quot;edgePaths&quot;&gt;&lt;g class=&quot;edgePath&quot; style=&quot;opacity: 1;&quot;&gt;&lt;path class=&quot;path&quot; d=&quot;M92,29L117,29L142,29&quot; marker-end=&quot;url(#arrowhead12)&quot; style=&quot;fill:none&quot;&gt;&lt;/path&gt;&lt;defs&gt;&lt;marker id=&quot;arrowhead12&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerUnits=&quot;strokeWidth&quot; markerWidth=&quot;8&quot; markerHeight=&quot;6&quot; orient=&quot;auto&quot;&gt;&lt;path d=&quot;M 0 0 L 10 5 L 0 10 z&quot; class=&quot;arrowheadPath&quot; style=&quot;stroke-width: 1; stroke-dasharray: 1, 0;&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;/defs&gt;&lt;/g&gt;&lt;g class=&quot;edgePath&quot; style=&quot;opacity: 1;&quot;&gt;&lt;path class=&quot;path&quot; d=&quot;M226,29L251,29L276,29&quot; marker-end=&quot;url(#arrowhead13)&quot; style=&quot;fill:none&quot;&gt;&lt;/path&gt;&lt;defs&gt;&lt;marker id=&quot;arrowhead13&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerUnits=&quot;strokeWidth&quot; markerWidth=&quot;8&quot; markerHeight=&quot;6&quot; orient=&quot;auto&quot;&gt;&lt;path d=&quot;M 0 0 L 10 5 L 0 10 z&quot; class=&quot;arrowheadPath&quot; style=&quot;stroke-width: 1; stroke-dasharray: 1, 0;&quot;&gt;&lt;/path&gt;&lt;/marker&gt;&lt;/defs&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=&quot;edgeLabels&quot;&gt;&lt;g class=&quot;edgeLabel&quot; transform=&quot;&quot; style=&quot;opacity: 1;&quot;&gt;&lt;g transform=&quot;translate(0,0)&quot; class=&quot;label&quot;&gt;&lt;foreignObject width=&quot;0&quot; height=&quot;0&quot;&gt;&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;display: inline-block; white-space: nowrap;&quot;&gt;&lt;span class=&quot;edgeLabel&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=&quot;edgeLabel&quot; transform=&quot;&quot; style=&quot;opacity: 1;&quot;&gt;&lt;g transform=&quot;translate(0,0)&quot; class=&quot;label&quot;&gt;&lt;foreignObject width=&quot;0&quot; height=&quot;0&quot;&gt;&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;display: inline-block; white-space: nowrap;&quot;&gt;&lt;span class=&quot;edgeLabel&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=&quot;nodes&quot;&gt;&lt;g class=&quot;node default&quot; id=&quot;install&quot; transform=&quot;translate(50,29)&quot; style=&quot;opacity: 1;&quot;&gt;&lt;rect rx=&quot;0&quot; ry=&quot;0&quot; x=&quot;-42&quot; y=&quot;-21&quot; width=&quot;84&quot; height=&quot;42&quot; class=&quot;label-container&quot;&gt;&lt;/rect&gt;&lt;g class=&quot;label&quot; transform=&quot;translate(0,0)&quot;&gt;&lt;g transform=&quot;translate(-32,-11)&quot;&gt;&lt;foreignObject width=&quot;64&quot; height=&quot;22&quot;&gt;&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;display: inline-block; white-space: nowrap;&quot;&gt;安装插件&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=&quot;node default&quot; id=&quot;configure&quot; transform=&quot;translate(184,29)&quot; style=&quot;opacity: 1;&quot;&gt;&lt;rect rx=&quot;0&quot; ry=&quot;0&quot; x=&quot;-42&quot; y=&quot;-21&quot; width=&quot;84&quot; height=&quot;42&quot; class=&quot;label-container&quot;&gt;&lt;/rect&gt;&lt;g class=&quot;label&quot; transform=&quot;translate(0,0)&quot;&gt;&lt;g transform=&quot;translate(-32,-11)&quot;&gt;&lt;foreignObject width=&quot;64&quot; height=&quot;22&quot;&gt;&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;display: inline-block; white-space: nowrap;&quot;&gt;配置插件&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class=&quot;node default&quot; id=&quot;draw&quot; transform=&quot;translate(342,29)&quot; style=&quot;opacity: 1;&quot;&gt;&lt;rect rx=&quot;0&quot; ry=&quot;0&quot; x=&quot;-66&quot; y=&quot;-21&quot; width=&quot;132&quot; height=&quot;42&quot; class=&quot;label-container&quot;&gt;&lt;/rect&gt;&lt;g class=&quot;label&quot; transform=&quot;translate(0,0)&quot;&gt;&lt;g transform=&quot;translate(-56,-11)&quot;&gt;&lt;foreignObject width=&quot;112&quot; height=&quot;22&quot;&gt;&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;display: inline-block; white-space: nowrap;&quot;&gt;绘制超赞的图表&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;h2 data-toc-id=&quot;f5b6be59-2cce-425d-8d2e-f17aeb4b1ff0&quot;&gt;Footnotes&lt;/h2&gt;
+&lt;p&gt;Footnote 1 link&lt;sup id=&quot;fnref-first&quot;&gt;&lt;a href=&quot;#fn-first&quot; class=&quot;footnote-ref&quot;&gt;first&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Footnote 2 link&lt;sup id=&quot;fnref-second&quot;&gt;&lt;a href=&quot;#fn-second&quot; class=&quot;footnote-ref&quot;&gt;second&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Inline footnote^[Text of inline footnote] definition.&lt;/p&gt;
+&lt;p&gt;Duplicated footnote reference&lt;sup id=&quot;fnref-second&quot;&gt;&lt;a href=&quot;#fn-second&quot; class=&quot;footnote-ref&quot;&gt;second&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;h2 data-toc-id=&quot;01b406e4-d5bb-4c94-b7da-8a95ac0ef9a2&quot;&gt;第三方嵌入式链接&lt;/h2&gt;
+&lt;p&gt;CodePen.io&lt;/p&gt;
+&lt;p&gt;&lt;iframe src=&quot;https://codepen.io/tajoy/embed/preview/OJyjJLy&quot; style=&quot;width:100%; height:300px;&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;Youtube&lt;/p&gt;
+&lt;p&gt;&lt;iframe width=&quot;100%&quot; height=&quot;315&quot; src=&quot;https://www.youtube-nocookie.com/embed/IlETeUMBKQI?rel=0&quot; frameBorder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowFullScreen&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;&lt;iframe width=&quot;100%&quot; height=&quot;315&quot; src=&quot;https://www.youtube-nocookie.com/embed/Aog5J95m-vw?rel=0&quot; frameBorder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowFullScreen&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;哔哩哔哩&lt;/p&gt;
+&lt;p&gt;&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=498338062&amp;bvid=BV1QK411H7io&amp;cid=193917699&amp;page=1&quot;  style=&quot;width:100%; height:500px;&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+  }
+  
+  .grvsc-code {
+    display: inline-block;
+    min-width: 100%;
+  }
+  
+  .grvsc-line {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-line-highlighted {
+    background-color: var(--grvsc-line-highlighted-background-color, transparent);
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, transparent);
+  }
+  
+  .monokai {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  .monokai .grvsc-tsSx3w-i { font-style: italic; }
+  .monokai .grvsc-tsSx3w-9 { color: #66D9EF; }
+  .monokai .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  .monokai .grvsc-tsSx3w-5 { color: #A6E22E; }
+  .monokai .grvsc-tsSx3w-7 { color: #F92672; }
+  .monokai .grvsc-tsSx3w-10 { color: #FD971F; }
+  .monokai .grvsc-tsSx3w-4 { color: #AE81FF; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-i { font-style: italic; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-9 { color: #66D9EF; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-5 { color: #A6E22E; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-10 { color: #FD971F; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-4 { color: #AE81FF; }
+  
+  /* Monokai */
+  @media (prefers-color-scheme: dark) {
+    .grvsc-mm-tsSx3w {
+      background-color: #272822;
+      color: #f8f8f2;
+    }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-i { font-style: italic; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-9 { color: #66D9EF; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-5 { color: #A6E22E; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-10 { color: #FD971F; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-4 { color: #AE81FF; }
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-4 { color: #0000FF; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-5 { color: #09885A; }
+  
+  /* Visual Studio Light */
+  @media (prefers-color-scheme: light) {
+    .grvsc-mm-tCN5OG {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-4 { color: #0000FF; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-5 { color: #09885A; }
+  }
+&lt;/style&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn-first&quot;&gt;
+&lt;p&gt;Footnote &lt;strong&gt;can have markup&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;and multiple paragraphs.&lt;/p&gt;
+&lt;a href=&quot;#fnref-first&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;li id=&quot;fn-second&quot;&gt;
+&lt;p&gt;Footnote text.&lt;/p&gt;
+&lt;a href=&quot;#fnref-second&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[如何解决"Dynamic Web Module 3.1 requires Java 1.7 or newer"的问题]]></title><description><![CDATA[每次修改java的版本, 更新maven后又还原了. 最后苦寻发现, 在pom.xml内加入如下内容, 之后 Alt+F5 更新即可.]]></description><link>https://tajoy.netundefined</link><guid isPermaLink="false">https://tajoy.neteclipse-maven-dynamic-web-module-require-18</guid><pubDate>Thu, 11 Aug 2016 06:56:25 GMT</pubDate><content:encoded>&lt;p&gt;每次修改java的版本, 更新maven后又还原了.&lt;/p&gt;
+&lt;p&gt;最后苦寻发现, 在pom.xml内加入如下内容, 之后 &lt;code&gt;Alt+F5&lt;/code&gt; 更新即可.&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;div
+              class=&quot;gatsby-code-button-container&quot;
+              data-toaster-id=&quot;&quot;
+              data-toaster-class=&quot;gatsby-code-button-toaster&quot;
+              data-toaster-text-class=&quot;gatsby-code-button-toaster-text&quot;
+              data-toaster-text=&quot;&quot;
+              data-toaster-duration=&quot;3500&quot;
+              onClick=&quot;copyToClipboard(`&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.1&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;source&gt;1.8&lt;/source&gt;
+                &lt;target&gt;1.8&lt;/target&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;`, ``)&quot;
+            &gt;
+              &lt;div
+                class=&quot;gatsby-code-button&quot;
+                data-tooltip=&quot;&quot;
+              &gt;
+                &lt;svg class=&quot;gatsby-code-button-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0V0z&quot;/&gt;&lt;path d=&quot;M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z&quot;/&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;xml&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;plugin&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;groupId&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;org.apache.maven.plugins&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;groupId&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;artifactId&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;maven-compiler-plugin&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;artifactId&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;3.1&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;                &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;1.8&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;                &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;1.8&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;plugin&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-8&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-8&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+  }
+  
+  .grvsc-code {
+    display: inline-block;
+    min-width: 100%;
+  }
+  
+  .grvsc-line {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-line-highlighted {
+    background-color: var(--grvsc-line-highlighted-background-color, transparent);
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, transparent);
+  }
+  
+  .monokai {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  .monokai .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  .monokai .grvsc-tsSx3w-7 { color: #F92672; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+  
+  /* Monokai */
+  @media (prefers-color-scheme: dark) {
+    .grvsc-mm-tsSx3w {
+      background-color: #272822;
+      color: #f8f8f2;
+    }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-8 { color: #800000; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+  
+  /* Visual Studio Light */
+  @media (prefers-color-scheme: light) {
+    .grvsc-mm-tCN5OG {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-8 { color: #800000; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[关于画画的一些网络收藏]]></title><description><![CDATA[收集整理的一些网站, 和一些喜欢的画师. 不定期更新.]]></description><link>https://tajoy.netundefined</link><guid isPermaLink="false">https://tajoy.netpainting-bookmark-site</guid><pubDate>Fri, 05 Aug 2016 15:09:30 GMT</pubDate><content:encoded>&lt;p&gt;收集整理的一些网站, 和一些喜欢的画师.&lt;/p&gt;
+&lt;p&gt;不定期更新.&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 data-toc-id=&quot;891d0967-c428-48da-87d5-b5c5d4bcaa5f&quot;&gt;大杂烩&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;国内的一个图片分享网站, 质量还不错.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://huaban.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;花瓣网&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Pixiv，新兴的日本同人画、插画作品分享站点。
+贴吧里叫P站=.=&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.pixiv.net/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Pixiv&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;不知道哪的.
+贴吧里叫D站, DA站=.=&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://deviantart.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;DeviantArt&lt;/a&gt;&lt;/p&gt;
+&lt;h2 data-toc-id=&quot;1f11f41e-526b-403c-8fc3-cf5c1f5264b6&quot;&gt;像素&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;国外的像素画站点, 包括图片分享, 论坛 等等.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://pixeljoint.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;PixelJoint&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;豆瓣小站&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://site.douban.com/163509/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;教你画像素画&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;上面那个小站的一个帖子.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://site.douban.com/163509/widget/notes/8695193/note/313513155/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;国外经典像素画教程汇总&lt;/a&gt;&lt;/p&gt;
+&lt;h2 data-toc-id=&quot;1d3e5632-98c4-4727-943f-b93d042ad63b&quot;&gt;画师&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;最近挺火的一个像素画师.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://1041uuu.tumblr.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;1041uuu&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;逐帧像素动画高手.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://syosa.deviantart.com/gallery/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;syosa&lt;/a&gt;&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+  }
+  
+  .grvsc-code {
+    display: inline-block;
+    min-width: 100%;
+  }
+  
+  .grvsc-line {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-line-highlighted {
+    background-color: var(--grvsc-line-highlighted-background-color, transparent);
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, transparent);
+  }
+  
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[C语言的lambda的探究 - C语言的一些小技巧(1)]]></title><description><![CDATA[引子 最近在学习FP(函数式编程), 如 MapReduce, Rudex 等都是应用FP而来的. FP对于分布式, 测试等等都有着天生的优势. 而我现在所在的公司的各种代码大部分都是由C写的.
+而FP在实现上一般需要lambda的支持, 所以最近找了下C关于lambda方面的资料.]]></description><link>https://tajoy.netundefined</link><guid isPermaLink="false">https://tajoy.netc-lambda-research</guid><pubDate>Fri, 05 Aug 2016 07:40:45 GMT</pubDate><content:encoded>&lt;h2 data-toc-id=&quot;f33df3a8-a0b2-49d2-af3f-6a649bd9fd71&quot;&gt;引子&lt;/h2&gt;
+&lt;p&gt;最近在学习FP(函数式编程), 如 MapReduce, Rudex 等都是应用FP而来的.&lt;/p&gt;
+&lt;p&gt;FP对于分布式, 测试等等都有着天生的优势. 而我现在所在的公司的各种代码大部分都是由C写的.
+而FP在实现上一般需要lambda的支持, 所以最近找了下C关于lambda方面的资料.&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 data-toc-id=&quot;1c738b8d-dcbf-4df5-b31f-1eaaa1acb868&quot;&gt;C的lambda&lt;/h2&gt;
+&lt;p&gt;网上找了以下, 第一搜索到这个:
+&lt;a href=&quot;http://www.cnblogs.com/Joke-Shi/p/5489293.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Lambda表达式（C语言）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下面是该文章中提到的代码:&lt;/p&gt;
+&lt;div
+              class=&quot;gatsby-code-button-container&quot;
+              data-toaster-id=&quot;&quot;
+              data-toaster-class=&quot;gatsby-code-button-toaster&quot;
+              data-toaster-text-class=&quot;gatsby-code-button-toaster-text&quot;
+              data-toaster-text=&quot;&quot;
+              data-toaster-duration=&quot;3500&quot;
+              onClick=&quot;copyToClipboard(`#include &lt;stdio.h&gt;
+
+/** 这里是我们定义的Lambda表达式的宏定义 */
+#define cgs_lambda( return_type, function_body) \
+       ({return_type cgs_lambda_func function_body cgs_lambda_func;})
+
+/*************************** 测试Main **************************/
+
+int main( int argc, const char **argv)
+{
+　　/* 我们做两个数相加的操作 */
+　　printf( &amp;quot;Sum = %d\n&amp;quot;, cgs_lambda( int, (int x, int y){ return x + y; })(3, 4) );
+　　return 0;
+}`, ``)&quot;
+            &gt;
+              &lt;div
+                class=&quot;gatsby-code-button&quot;
+                data-tooltip=&quot;&quot;
+              &gt;
+                &lt;svg class=&quot;gatsby-code-button-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0V0z&quot;/&gt;&lt;path d=&quot;M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z&quot;/&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;c&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#include&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt;/** 这里是我们定义的Lambda表达式的宏定义 */&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#define&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-4&quot;&gt;cgs_lambda&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;( &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;return_type&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;function_body&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-4&quot;&gt;\&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;       ({return_type cgs_lambda_func function_body cgs_lambda_func;})&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt;/*************************** 测试Main **************************/&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;( &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;　　&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt;/* 我们做两个数相加的操作 */&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line grvsc-line-highlighted&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;　　&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;( &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;Sum = &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-12&quot;&gt;%d\n&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;cgs_lambda&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;( &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, (&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; x, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; y){ &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; x &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; y; })(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;) );&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;　　&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后我稍微优化了以下, 做了一些兼容.&lt;/p&gt;
+&lt;p&gt;值得一提的是, 这个宏只支持&lt;em&gt;gcc的编译器&lt;/em&gt;, 或者是支持&lt;em&gt;c++11的c++编译器&lt;/em&gt;, 也就是C++的11版.&lt;/p&gt;
+&lt;div
+              class=&quot;gatsby-code-button-container&quot;
+              data-toaster-id=&quot;&quot;
+              data-toaster-class=&quot;gatsby-code-button-toaster&quot;
+              data-toaster-text-class=&quot;gatsby-code-button-toaster-text&quot;
+              data-toaster-text=&quot;&quot;
+              data-toaster-duration=&quot;3500&quot;
+              onClick=&quot;copyToClipboard(`#ifndef __LAMBDA__
+#define __LAMBDA__
+
+#ifdef __cplusplus
+    // 定义lambda宏  
+    #define lambda(return_type, func_parms, func_body)\
+        ([&amp;] -&gt; return_type func_parms function_body)
+
+#else
+
+    #ifdef __GNUC__
+
+        // 定义lambda宏  
+        #define lambda(return_type, func_parms, func_body)\
+        ({\  
+                return_type \$this func_parms func_body\
+                \$this;\  
+        })
+
+    #else
+        #error &amp;quot;not support!&amp;quot;
+    #endif //__GNUC__
+
+#endif //__cplusplus
+
+#define \$ lambda
+
+#endif // __LAMBDA__`, ``)&quot;
+            &gt;
+              &lt;div
+                class=&quot;gatsby-code-button&quot;
+                data-tooltip=&quot;&quot;
+              &gt;
+                &lt;svg class=&quot;gatsby-code-button-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0V0z&quot;/&gt;&lt;path d=&quot;M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z&quot;/&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;c++&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#ifndef&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; __LAMBDA__&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#define&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-4&quot;&gt;__LAMBDA__&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#ifdef&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; __cplusplus&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt;    // 定义lambda宏  &lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#define&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-4&quot;&gt;lambda&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;return_type&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;func_parms&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;func_body&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-4&quot;&gt;\&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;        ([&amp;] -&amp;gt; return_type func_parms function_body)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#else&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#ifdef&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; __GNUC__&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt;        // 定义lambda宏  &lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#define&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-4&quot;&gt;lambda&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;return_type&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;func_parms&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;func_body&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-4&quot;&gt;\&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;        ({\  &lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;                return_type $this func_parms func_body\&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;                $this;\  &lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;        })&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;    #else&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#error&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;not support!&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;    #endif&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt; //__GNUC__&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#endif&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt; //__cplusplus&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;#define $ lambda&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#endif&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-3 grvsc-tCN5OG-3&quot;&gt; // __LAMBDA__&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;下面是使用示例:&lt;/p&gt;
+&lt;div
+              class=&quot;gatsby-code-button-container&quot;
+              data-toaster-id=&quot;&quot;
+              data-toaster-class=&quot;gatsby-code-button-toaster&quot;
+              data-toaster-text-class=&quot;gatsby-code-button-toaster-text&quot;
+              data-toaster-text=&quot;&quot;
+              data-toaster-duration=&quot;3500&quot;
+              onClick=&quot;copyToClipboard(`#include &lt;stdio.h&gt;
+
+#include &amp;quot;lambda.h&amp;quot;
+
+typedef int (*Adder)(int, int);
+
+int sum(int *arr, int length, Adder adder)
+{
+    int i = 0, sum = 0;
+    for (i = 0; i &lt; length; i++)
+    {
+        sum = adder(sum, arr[i]);
+    }
+    return sum;
+}
+
+int main(int argc, char const *argv[])
+{
+    int arr[] = { 1, 2, 3, 4, 5 };
+
+    Adder adder = \$(int, (int _a, int _b), {
+        int c = _a + _b;
+        return c;
+    });
+
+    int ret = sum(arr, sizeof(arr) / sizeof(int), adder);
+    printf(&amp;quot;sum of arr is %d\n&amp;quot;, ret);
+    return 0;
+}`, ``)&quot;
+            &gt;
+              &lt;div
+                class=&quot;gatsby-code-button&quot;
+                data-tooltip=&quot;&quot;
+              &gt;
+                &lt;svg class=&quot;gatsby-code-button-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0V0z&quot;/&gt;&lt;path d=&quot;M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z&quot;/&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+&lt;pre class=&quot;grvsc-container monokai grvsc-mm-tsSx3w grvsc-ps-tsSx3w grvsc-mm-tCN5OG grvsc-ps-tCN5OG&quot; data-language=&quot;c&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#include&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;#include&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-4&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;lambda.h&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;typedef&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;Adder)(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, Adder &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; i &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, sum &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; (i &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;; i &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; length; i&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    {&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;        sum &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(sum, arr[i]);&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; sum;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-10 grvsc-tsSx3w-i grvsc-tCN5OG-1&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; arr&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; { &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; };&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    Adder adder &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; $(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, (&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; _a, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; _b), {&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; c &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; _a &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; _b;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; c;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    });&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; ret &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(arr, &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(arr) &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-1&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-9 grvsc-tsSx3w-i grvsc-tCN5OG-4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;), adder);&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-5 grvsc-tCN5OG-1&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;sum of arr is &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-12&quot;&gt;%d\n&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-6 grvsc-tCN5OG-12&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;, ret);&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-7 grvsc-tCN5OG-4&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-4 grvsc-tCN5OG-5&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-tsSx3w-1 grvsc-tCN5OG-1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;打印输出结果:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sum of arr is 15&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 data-toc-id=&quot;70ef7d20-68f9-4735-87bc-3fd8721adac5&quot;&gt;局限与注意事项&lt;/h2&gt;
+&lt;p&gt;在lambda函数被其他地方调用的时候, 可以在lambda函数内捕获那些外部的变量&lt;/p&gt;
+&lt;p&gt;但是, 如果被捕获的外部变量如果超出作用域, 那将造成&lt;strong&gt;程序崩溃&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;所以, 更推荐只引用外部的静态/全局变量, 或者配合静态/全局变量 malloc/new 一个内存出来访问&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+  }
+  
+  .grvsc-code {
+    display: inline-block;
+    min-width: 100%;
+  }
+  
+  .grvsc-line {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-line-highlighted {
+    background-color: var(--grvsc-line-highlighted-background-color, transparent);
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, transparent);
+  }
+  
+  .monokai {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  .monokai .grvsc-tsSx3w-i { font-style: italic; }
+  .monokai .grvsc-tsSx3w-7 { color: #F92672; }
+  .monokai .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  .monokai .grvsc-tsSx3w-6 { color: #E6DB74; }
+  .monokai .grvsc-tsSx3w-3 { color: #75715E; }
+  .monokai .grvsc-tsSx3w-5 { color: #A6E22E; }
+  .monokai .grvsc-tsSx3w-10 { color: #FD971F; }
+  .monokai .grvsc-tsSx3w-4 { color: #AE81FF; }
+  .monokai .grvsc-tsSx3w-9 { color: #66D9EF; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w {
+    background-color: #272822;
+    color: #f8f8f2;
+  }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-i { font-style: italic; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-6 { color: #E6DB74; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-3 { color: #75715E; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-5 { color: #A6E22E; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-10 { color: #FD971F; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-4 { color: #AE81FF; }
+  div.layout[data-theme=dark] .grvsc-ps-tsSx3w .grvsc-tsSx3w-9 { color: #66D9EF; }
+  
+  /* Monokai */
+  @media (prefers-color-scheme: dark) {
+    .grvsc-mm-tsSx3w {
+      background-color: #272822;
+      color: #f8f8f2;
+    }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-i { font-style: italic; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-7 { color: #F92672; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-1 { color: #F8F8F2; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-6 { color: #E6DB74; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-3 { color: #75715E; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-5 { color: #A6E22E; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-10 { color: #FD971F; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-4 { color: #AE81FF; }
+    .grvsc-mm-tsSx3w .grvsc-tsSx3w-9 { color: #66D9EF; }
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-4 { color: #0000FF; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-12 { color: #A31515; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-3 { color: #008000; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+  div.layout[data-theme=light] .grvsc-ps-tCN5OG .grvsc-tCN5OG-5 { color: #09885A; }
+  
+  /* Visual Studio Light */
+  @media (prefers-color-scheme: light) {
+    .grvsc-mm-tCN5OG {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-4 { color: #0000FF; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-12 { color: #A31515; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-3 { color: #008000; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-1 { color: #000000; }
+    .grvsc-mm-tCN5OG .grvsc-tCN5OG-5 { color: #09885A; }
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[No.1]]></title><description><![CDATA[这是本博客的第一篇文章, 仅以此作为纪念.]]></description><link>https://tajoy.netundefined</link><guid isPermaLink="false">https://tajoy.netfirst-post</guid><pubDate>Mon, 01 Aug 2016 15:28:03 GMT</pubDate><content:encoded>&lt;p&gt;这是本博客的第一篇文章, 仅以此作为纪念.&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+  }
+  
+  .grvsc-code {
+    display: inline-block;
+    min-width: 100%;
+  }
+  
+  .grvsc-line {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-line-highlighted {
+    background-color: var(--grvsc-line-highlighted-background-color, transparent);
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, transparent);
+  }
+  
+&lt;/style&gt;</content:encoded></item></channel></rss>

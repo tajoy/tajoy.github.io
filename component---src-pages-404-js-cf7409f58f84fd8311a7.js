@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{w2l6:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),l=t.n(a),c=t("Wbzz");n.default=function(e){e.data,e.location;return l.a.createElement("div",null,l.a.createElement("h1",null,"404 - 哇哦, 这是什么?"),l.a.createElement("p",null,"你貌似发现了什么, 但是不要遗失在这未知的领域!"),l.a.createElement(c.Link,{to:"/"},"返回首页"))}}}]);
+//# sourceMappingURL=component---src-pages-404-js-cf7409f58f84fd8311a7.js.map
