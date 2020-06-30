@@ -35,7 +35,7 @@ const Shader = ({ shader, context }) => {
   const {
     id,
     frag,
-    fields: { title, date, description, keywords, showComments, draft },
+    fields: { slug, title, date, description, keywords, showComments, draft },
   } = shader
 
   return (
@@ -61,7 +61,7 @@ const Shader = ({ shader, context }) => {
       <FeedbackReward />
       <License context={context} />
       <Nav />
-      <Comment show={showComments} />
+      <Comment show={showComments} title={title || slug} />
     </Container>
   )
 }

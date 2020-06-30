@@ -5,7 +5,6 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { rhythm, scale } from "../utils/typography"
 
-
 import moment from "moment"
 
 import Comment from "./Comment"
@@ -35,7 +34,7 @@ const SEOKeywords = styled.div`
 const Photo = ({ photo, context }) => {
   const {
     id,
-    fields: { keywords, date, title, description, showComments = true },
+    fields: { slug, keywords, date, title, description, showComments = true },
   } = photo
 
   return (
@@ -61,7 +60,7 @@ const Photo = ({ photo, context }) => {
       <FeedbackReward />
       <License context={context} />
       <Nav />
-      <Comment show={showComments} />
+      <Comment show={showComments} title={title || slug} />
     </Container>
   )
 }

@@ -57,7 +57,7 @@ const Index = ({ data, location }) => {
           描述(可选): 简短介绍
         </code>
       </pre>
-      <Comment id="message-box" />
+      <Comment id="message-box" title="留言簿" />
     </Container>
   )
 }

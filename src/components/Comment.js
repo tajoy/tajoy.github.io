@@ -23,7 +23,7 @@ class Comment extends React.Component {
       this.gitalk.render("gitalk-container")
       return
     }
-    const { id = md5(location.pathname) } = this.props
+    const { id = md5(location.pathname), title } = this.props
     const $container = $("#gitalk-container")
     if (
       ["localhost", "127.0.0.1"].indexOf(
@@ -45,6 +45,7 @@ class Comment extends React.Component {
         admin: ["tajoy"],
         id: id.substr(0, 50), // Ensure uniqueness and length less than 50
         distractionFreeMode: false, // Facebook-like distraction free mode
+        title,
       })
     }
     this.gitalk.render("gitalk-container")
