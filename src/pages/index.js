@@ -11,6 +11,8 @@ import Recently from "./index/recently/Recently"
 import PhotoBox from "./index/photo-box/PhotoBox"
 import ShaderBox from "./index/shader-box/ShaderBox"
 
+import Comment from "../components/Comment"
+
 const Container = styled.div`
   margin: ${rhythm(0.5)};
 `
@@ -40,6 +42,22 @@ const Index = ({ data, location }) => {
       <PhotoBox />
       <UpdateFrequency updates={data.updateFrequency.updates} />
       <FriendLinks friends={data.allFriend.edges.map(({ node }) => node)} />
+      <h2>留言簿</h2>
+      <p>即时版聊区，话题不限，欢迎留言。交换友链请留言。</p>
+      <b>友链格式:</b>
+      <pre>
+        <code>
+          <br />
+          名称: 你希望显示的网站名称
+          <br />
+          地址: 访问地址
+          <br />
+          Icon/头像(可选): 图片地址/base64格式图片
+          <br />
+          描述(可选): 简短介绍
+        </code>
+      </pre>
+      <Comment id="message-box" />
     </Container>
   )
 }

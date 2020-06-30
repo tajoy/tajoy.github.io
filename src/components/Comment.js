@@ -3,6 +3,8 @@ import { Link } from "gatsby"
 
 import * as $ from "jquery"
 
+import md5 from "js-md5"
+
 import styled from "styled-components"
 import { rhythm, scale } from "../utils/typography"
 import Gitalk from "gitalk"
@@ -21,11 +23,16 @@ class Comment extends React.Component {
       this.gitalk.render("gitalk-container")
       return
     }
-    const { id = location.pathname } = this.props
+    const { id = md5(location.pathname) } = this.props
     const $container = $("#gitalk-container")
-    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+    if (
+      ["localhost", "127.0.0.1"].indexOf(
+        window.location.hostname
+      ) != -1 ||
+      /192\.[0-9\.]+/.test(window.location.hostname)
+    ) {
       $container.html(
-        "Gitalk comments not available by default when the website is previewed locally."
+        "Gitalk 评论不支持本地预览."
       )
       return
     }
@@ -44,7 +51,7 @@ class Comment extends React.Component {
   }
 
   render() {
-    const { show } = this.props
+    const { show = true } = this.props
     // console.log("showComments", show)
     return <Container id="gitalk-container" show={show}></Container>
   }
