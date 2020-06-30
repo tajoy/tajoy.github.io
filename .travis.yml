@@ -17,25 +17,26 @@ install:
 - yarn
 script:
 - npm run build
-env:
-  global:
-  - GH_REF: https://github.com/tajoy/tajoy.github.io.git
+# env:
+#   global:
+#   - GH_REF: https://github.com/tajoy/tajoy.github.io.git
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
   -in deploy_rsa.enc -out /tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa
 - ssh-add /tmp/deploy_rsa
-- echo "tajoy.net" > ./public/CNAME
+# - echo "tajoy.net" > ./public/CNAME
 deploy:
-- provider: pages
-  skip_cleanup: true
-  local_dir: ./public
-  target_branch: master
-  github_token: $GITHUB_TOKEN
-  keep_history: false
-  on:
-    branch: src
+# github page 的图片下载太慢了, 暂时用自己服务器
+# - provider: pages
+#   skip_cleanup: true
+#   local_dir: ./public
+#   target_branch: master
+#   github_token: $GITHUB_TOKEN
+#   keep_history: false
+#   on:
+#     branch: src
 - provider: script
   skip_cleanup: true
   script: bash scripts/deploy.sh
