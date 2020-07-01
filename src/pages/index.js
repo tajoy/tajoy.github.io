@@ -57,6 +57,18 @@ const Index = ({ data, location }) => {
           描述(可选): 简短介绍
         </code>
       </pre>
+      <b>本站链接:</b>
+      <pre>
+        <code>
+          名称: Tajoy's blog
+          <br />
+          头像: https://raw.githubusercontent.com/tajoy/tajoy.github.io/src/static/profile.jpg
+          <br />
+          描述: 一个不会摄影的程序猿, 不是一个好的艺术家. <br />
+          地址: https://tajoy.net
+          <br />
+        </code>
+      </pre>
       <Comment id="message-box" title="留言簿" />
     </Container>
   )
