@@ -1,2 +1,3 @@
-name    = "问嗒"
-link    = "http://www.letswen.com/"
+description = "你问我嗒, 收费必答"
+link        = "http://www.letswen.com/"
+name        = "问嗒"
