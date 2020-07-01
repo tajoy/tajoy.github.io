@@ -11,20 +11,45 @@ import theme from "styled-theming"
 
 import { LIGHT, DARK } from "../../../theme/colors"
 
-const Container = styled.div`
-  width: 64px;
-  height: 64px;
+const Container = styled.a`
+  max-width: 256px;
+  margin: 24px 12px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 6px;
+`
+
+const HeadPic = styled.div`
+  min-width: 64px;
+  min-height: 64px;
+  max-width: 64px;
+  max-height: 64px;
   img,
   svg {
     border-radius: 8px;
-    width: 100%;
-    height: 100%;
+    min-width: 64px;
+    min-height: 64px;
+    max-width: 64px;
+    max-height: 64px;
     margin: 0;
     padding: 0;
   }
-  text-align: center;
-
-  margin: 24px;
+`
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 6px;
+  width: 100%;
+`
+const Name = styled.div`
+  text-align: left;
+  margin-bottom: 6px;
+  margin: auto 0;
+`
+const Description = styled.div`
+  text-align: left;
+  font-size: 12px;
 `
 
 function hex(v) {
@@ -48,13 +73,16 @@ const Friend = ({ friend }) => {
   const avg = (digest[0] + digest[1] + digest[2]) / 3.0
   const color = toColor(digest[0], digest[1], digest[2])
   return (
-    <Container>
-      <a
-        href={friend.link}
-        title={friend.description || friend.name}
-        alt={friend.description || friend.name}
-        target="_blank"
-      >
+    <Container
+      href={friend.link}
+      title={friend.description || friend.name}
+      alt={friend.description || friend.name}
+      target="_blank"
+      style={{
+        boxShadow: "none",
+      }}
+    >
+      <HeadPic>
         {friend.headPic ? (
           <img src={friend.headPic} alt={friend.name} />
         ) : (
@@ -76,8 +104,11 @@ const Friend = ({ friend }) => {
             </text>
           </svg>
         )}
-        <span>{friend.name}</span>
-      </a>
+      </HeadPic>
+      <Content>
+        <Name>{friend.name}</Name>
+        <Description>{friend.description}</Description>
+      </Content>
     </Container>
   )
 }
