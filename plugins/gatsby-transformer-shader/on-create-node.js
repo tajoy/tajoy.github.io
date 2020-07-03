@@ -141,10 +141,9 @@ module.exports = async function onCreateNode(
       `Error processing Shader ${
         node.absolutePath ? `file ${node.absolutePath}` : `in node ${node.id}`
       }:\n
-      ${err.message}\n
-      ${err.stack}`
+      ${err.message ? err.message : err}\n
+      ${err.stack ? err.stack : ""}`
     )
-
     return {} // eslint
   }
 }
