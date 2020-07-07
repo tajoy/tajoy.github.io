@@ -202,12 +202,12 @@ int main(int argc, char const *argv[])
 
 ### gcc
 
-定义宏: `-D <macro>=<value>`, 如果 `value` 被忽略的话, 将被定义为1
-宏展开: `-E`, 例如: `gcc -E foo.c`, 这将打印出文件被展开所有宏之后的内容, 方便调试复杂的宏是怎么暂开的
+- 定义宏: `-D <macro>=<value>`, 如果 `value` 被忽略的话, 将被定义为1
+- 宏展开: `-E`, 例如: `gcc -E foo.c`, 这将打印出文件被展开所有宏之后的内容, 方便调试复杂的宏是怎么暂开的
 
 
 ### msvc cl
 
-定义宏: `/D<macro> <value>` 或 `/D <macro>=<value>`, 例如: `CL /DDEBUG TEST.C` 或 `CL /D __far= TEST.C`
-宏展开: `/P`, 例如: `CL /P /C ADD.C`
+- 定义宏: `/D<macro> <value>` 或 `/D <macro>=<value>`, 例如: `CL /DDEBUG TEST.C` 或 `CL /D __far= TEST.C`
+- 宏展开: `/P`, 例如: `CL /P /C ADD.C`
 
