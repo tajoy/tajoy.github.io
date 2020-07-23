@@ -62,7 +62,7 @@ const Index = ({ data, location }) => {
         <code>
           名称: Tajoy's blog
           <br />
-          头像: https://raw.githubusercontent.com/tajoy/tajoy.github.io/src/static/profile.jpg
+          头像: https://wx2.sbimg.cn/2020/07/23/DiyUU.jpg
           <br />
           描述: 一个不会摄影的程序猿, 不是一个好的艺术家. <br />
           地址: https://tajoy.net
