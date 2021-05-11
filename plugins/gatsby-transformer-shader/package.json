@@ -14,7 +14,7 @@
     "glslify": "^7.0.0",
     "glslify-hex": "^2.1.1",
     "gray-matter": "^4.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "sharp": "^0.25.4",
     "toml": "^3.0.0"
   },
