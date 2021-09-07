@@ -1627,6 +1627,13 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.150.tgz#649fe44684c3f1fcb6164d943c5a61977e8cf0bd"
   integrity sha512-kMNLM5JBcasgYscD9x/Gvr6lTAv2NVgsKtet/hm93qMyf/D1pt+7jeEZklKJKxMVmXjxbRVQQGfqDSfipYCO6w==
 
+"@types/mdast@^3.0.0":
+  version "3.0.10"
+  resolved "https://registry.nlark.com/@types/mdast/download/@types/mdast-3.0.10.tgz#4724244a82a4598884cbbe9bcfd73dff927ee8af"
+  integrity sha1-RyQkSoKkWYiEy76bz9c9/5J+6K8=
+  dependencies:
+    "@types/unist" "*"
+
 "@types/mdast@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/mdast/-/mdast-3.0.3.tgz#2d7d671b1cd1ea3deb306ea75036c2a0407d2deb"
@@ -8810,10 +8817,10 @@ hast-util-raw@^4.0.0:
     xtend "^4.0.1"
     zwitch "^1.0.0"
 
-hast-util-sanitize@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.npm.taobao.org/hast-util-sanitize/download/hast-util-sanitize-2.0.2.tgz#8a4299bccba6cc8836284466d446060d2ecb2f5c"
-  integrity sha1-ikKZvMumzIg2KERm1EYGDS7LL1w=
+hast-util-sanitize@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.nlark.com/hast-util-sanitize/download/hast-util-sanitize-3.0.2.tgz#b0b783220af528ba8fe6999f092d138908678520"
+  integrity sha1-sLeDIgr1KLqP5pmfCS0TiQhnhSA=
   dependencies:
     xtend "^4.0.0"
 
@@ -11039,7 +11046,14 @@ mdast-util-definitions@^2.0.0:
   dependencies:
     unist-util-visit "^2.0.0"
 
-mdast-util-to-hast@8.2.0, mdast-util-to-hast@^8.0.0, mdast-util-to-hast@^8.2.0:
+mdast-util-definitions@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.nlark.com/mdast-util-definitions/download/mdast-util-definitions-4.0.0.tgz#c5c1a84db799173b4dcf7643cda999e440c24db2"
+  integrity sha1-xcGoTbeZFztNz3ZDzamZ5EDCTbI=
+  dependencies:
+    unist-util-visit "^2.0.0"
+
+mdast-util-to-hast@8.2.0, mdast-util-to-hast@^8.0.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-8.2.0.tgz#adf9f824defcd382e53dd7bace4282a45602ac67"
   integrity sha512-WjH/KXtqU66XyTJQ7tg7sjvTw1OQcVV0hKdFh3BgHPwZ96fSBCQ/NitEHsN70Mmnggt+5eUUC7pCnK+2qGQnCA==
@@ -11049,6 +11063,20 @@ mdast-util-to-hast@8.2.0, mdast-util-to-hast@^8.0.0, mdast-util-to-hast@^8.2.0:
     mdast-util-definitions "^2.0.0"
     mdurl "^1.0.0"
     trim-lines "^1.0.0"
+    unist-builder "^2.0.0"
+    unist-util-generated "^1.0.0"
+    unist-util-position "^3.0.0"
+    unist-util-visit "^2.0.0"
+
+mdast-util-to-hast@^10.0.0:
+  version "10.2.0"
+  resolved "https://registry.nlark.com/mdast-util-to-hast/download/mdast-util-to-hast-10.2.0.tgz#61875526a017d8857b71abc9333942700b2d3604"
+  integrity sha1-YYdVJqAX2IV7cavJMzlCcAstNgQ=
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.0"
+    mdast-util-definitions "^4.0.0"
+    mdurl "^1.0.0"
     unist-builder "^2.0.0"
     unist-util-generated "^1.0.0"
     unist-util-position "^3.0.0"
@@ -14614,15 +14642,14 @@ remark-footnotes@1.0.0:
   resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-1.0.0.tgz#9c7a97f9a89397858a50033373020b1ea2aad011"
   integrity sha512-X9Ncj4cj3/CIvLI2Z9IobHtVi8FVdUrdJkCNaL9kdX8ohfsi18DXHsCVd/A7ssARBdccdDb5ODnt62WuEWaM/g==
 
-remark-html@^11.0.2:
-  version "11.0.2"
-  resolved "https://registry.npm.taobao.org/remark-html/download/remark-html-11.0.2.tgz#76f6f7c8981c736f01cb65f8853dbe5c2e546dfa"
-  integrity sha1-dvb3yJgcc28By2X4hT2+XC5Ubfo=
+remark-html@^13.0.2:
+  version "13.0.2"
+  resolved "https://registry.nlark.com/remark-html/download/remark-html-13.0.2.tgz#de5f052749ff61fc904c9708c155c88a2e2655dc"
+  integrity sha1-3l8FJ0n/YfyQTJcIwVXIii4mVdw=
   dependencies:
-    hast-util-sanitize "^2.0.0"
+    hast-util-sanitize "^3.0.0"
     hast-util-to-html "^7.0.0"
-    mdast-util-to-hast "^8.2.0"
-    xtend "^4.0.1"
+    mdast-util-to-hast "^10.0.0"
 
 remark-math@^1.0.6:
   version "1.0.6"
