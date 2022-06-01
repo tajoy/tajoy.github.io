@@ -96,7 +96,7 @@
     "remark-retext": "^4.0.0",
     "remark-stringify": "^8.0.0",
     "retext-english": "^3.0.4",
-    "sharp": "^0.25.4",
+    "sharp": "^0.30.5",
     "slug": "^2.1.1",
     "styled-components": "4",
     "styled-theming": "^2.2.0",
